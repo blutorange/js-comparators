@@ -1,0 +1,22 @@
+{
+  "name": "comparators",
+  "version": "1.0.0",
+  "description": "Utility methods for creating comparators, ie. function (left,right)=>number.",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/blutorange/js-comparators.git"
+  },
+  "keywords": [
+    "comparator"
+  ],
+  "author": "Andre Wachsmuth",
+  "license": "Unlicense",
+  "bugs": {
+    "url": "https://github.com/blutorange/js-comparators/issues"
+  },
+  "homepage": "https://github.com/blutorange/js-comparators#readme"
+}
