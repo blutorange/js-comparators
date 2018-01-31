@@ -4,7 +4,8 @@
   "description": "Utility methods for creating comparators, ie. function (left,right)=>number.",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "doc": "typedoc --mode file --name js-comparators --readme README.md --out doc main.ts"
   },
   "repository": {
     "type": "git",
