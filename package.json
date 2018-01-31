@@ -5,7 +5,9 @@
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "doc": "typedoc --mode file --name js-comparators --readme README.md --out doc main.ts"
+    "doc": "typedoc --mode file --name js-comparators --readme README.md --out doc main.ts",
+    "transpile": "tsc -p tsconfig.json",
+    "build": "npm run doc ; npm run transpile"
   },
   "repository": {
     "type": "git",

@@ -33,9 +33,6 @@ function byField(keySpecifier, comparator) {
     return byKey(keyExtractor, comparator);
 }
 exports.byField = byField;
-function access(object, key) {
-    return object[key];
-}
 function combine() {
     var comparators = [];
     for (var _i = 0; _i < arguments.length; _i++) {
