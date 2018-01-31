@@ -106,6 +106,8 @@ function combine<T>(...comparators: Comparator<T>[]): Comparator<T> {
 }
 
 export {
+    Comparator,
+    KeyExtractor,
     natural,
     naturalInverse,
     invert,

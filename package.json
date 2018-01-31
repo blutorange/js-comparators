@@ -5,8 +5,8 @@
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "doc": "typedoc --mode file --name js-comparators --readme README.md --out doc main.ts",
-    "transpile": "tsc -p tsconfig.json",
+    "doc": "npx typedoc --mode file --name js-comparators --readme README.md --out doc main.ts",
+    "transpile": "npx tsc -p tsconfig.json",
     "build": "npm run doc ; npm run transpile"
   },
   "repository": {
@@ -20,6 +20,10 @@
   "license": "Unlicense",
   "bugs": {
     "url": "https://github.com/blutorange/js-comparators/issues"
+  },
+  "devDependencies": {
+    "typedoc": "^0.9.0",
+    "typescript": "^2.7.1"
   },
   "homepage": "https://github.com/blutorange/js-comparators#readme"
 }
