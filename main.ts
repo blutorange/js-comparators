@@ -56,7 +56,11 @@ function invert<T>(comparator: Comparator<T>) : Comparator<T> {
 }
 
 /**
- * Compares two objects computing a key for each object.
+ * Compares two objects by computing a key for each object.
+ * ```javascript
+ * [{id:9},{id:4}].sort(byKey(customer => customer.id))
+ * [{id:9},{id:4}].sort(byKey(customer => customer.id), naturalnverse)
+ * ```
  * @typeparam T Type of the objects to compare.
  * @typeparam K Type of the key produces by the given key extractor.
  * @param keyExtractor - Takes one argument, the object, and returns the key to compare by.
@@ -79,7 +83,7 @@ function byKey<T,K>(
  */
 function byField<T>(keySpecifier: string, comparator?: Comparator<any>) : Comparator<T> {
     const fields = keySpecifier.split(".");
-    const keyExtractor = (object:T) => fields.reduce((obj, field) => obj[field], object);
+    const keyExtractor = (object:T) => fields.reduce((obj:{[s:string]:any}, field) => obj[field], object);
     return byKey(keyExtractor, comparator);
 }
 

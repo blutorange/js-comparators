@@ -1,6 +1,6 @@
 Utility methods for creating comparators, ie. `function (left,right)=>number`. Slightly more versatile than other packages I found.
 
-[Documentation for all methods.](http://htmlpreview.github.io/?https://github.com/blutorange/js-comparators/blob/master/doc/globals.html)
+[Documentation for all methods.](http://htmlpreview.github.io/?https://github.com/blutorange/js-comparators/blob/master/doc/index.html)
 
 Compare objects by their id property:
 
