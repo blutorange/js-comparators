@@ -1,13 +1,27 @@
-interface Comparator<T> {
+export interface Predicate<T> {
+    (item: T): boolean;
+}
+export interface Equator<T> {
+    (lhs: T, rhs: T): boolean;
+}
+export interface Comparator<T> {
     (lhs: T, rhs: T): number;
 }
-interface KeyExtractor<T, K> {
+export interface KeyExtractor<T, K> {
     (item: T): K;
 }
-declare function natural<T>(lhs: T, rhs: T): number;
-declare function naturalInverse<T>(lhs: T, rhs: T): number;
-declare function invert<T>(comparator: Comparator<T>): Comparator<T>;
-declare function byKey<T, K>(keyExtractor: KeyExtractor<T, K>, keyComparator?: Comparator<K>): Comparator<T>;
-declare function byField<T>(keySpecifier: string, comparator?: Comparator<any>): Comparator<T>;
-declare function combine<T>(...comparators: Comparator<T>[]): Comparator<T>;
-export { Comparator, KeyExtractor, natural, naturalInverse, invert, byKey, byField, combine };
+export interface Comparable<T> {
+    compareTo(rhs: T): number;
+}
+export declare function comparable<T extends Comparable<T>>(lhs: T, rhs: T): number;
+export declare function natural<T>(lhs: T, rhs: T): number;
+export declare function inverse<T>(lhs: T, rhs: T): number;
+export declare function invert<T>(comparator: Comparator<T>): Comparator<T>;
+export declare function byKey<T, K>(keyExtractor: KeyExtractor<T, K>, keyComparator?: Comparator<K>): Comparator<T>;
+export declare function byProp<T>(keySpecifier: string, comparator?: Comparator<any>): Comparator<T>;
+export declare function combine<T>(...comparators: Comparator<T>[]): Comparator<T>;
+export declare const ignoreCase: Comparator<string>;
+export declare function byThreshold(threshold?: number): Comparator<number>;
+export declare function equals<T>(comparator?: Comparator<T>): Equator<T>;
+export declare function equalTo<T>(item: T, test?: Comparator<T>): Predicate<T>;
+export declare function within<T>(lower: T, upper: T, comparator?: Comparator<T>, mode?: "[]" | "()" | "[)" | "(]"): Predicate<T>;

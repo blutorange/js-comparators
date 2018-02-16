@@ -1,18 +1,24 @@
 {
-  "name": "comparators",
+  "name": "kagura",
   "version": "1.0.0",
-  "description": "Utility methods for creating comparators, ie. function (left,right)=>number.",
+  "description": "Utility methods for creating comparators, ie. function(left,right) : number.",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "doc": "npx typedoc --mode file --name js-comparators --readme README.md --out doc --excludeExternals --excludePrivate --excludeProtected --theme minimal main.ts",
+    "test": "npx mocha --reporter spec",
+    "doc": "npx typedoc --mode file --name js-kagura --readme README.md --out doc --excludeExternals --excludePrivate --excludeProtected --theme minimal main.ts",
+    "clean": "rm -rf main.js main.d.ts doc/* dist.js dist.min.js babel.js",
     "transpile": "npx tsc -p tsconfig.json",
-    "build": "npm run doc ; npm run transpile"
+    "browserify": "npx browserify babel.js --standalone Kagura -o dist.js",
+    "babel": "npx babel main.js --out-file babel.js",
+    "minify": "npx minify dist.js --out-file dist.min.js",
+    "prebuild": "npm run clean",
+    "build": "npm run transpile && npm run babel && npm run browserify && npm run minify && npm run doc",
+    "postbuild": "rm babel.js && npm run test"
   },
   "types": "./main.d.ts",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/blutorange/js-comparators.git"
+    "url": "git+https://github.com/blutorange/js-kagura.git"
   },
   "keywords": [
     "comparator"
@@ -20,11 +26,19 @@
   "author": "Andre Wachsmuth",
   "license": "Unlicense",
   "bugs": {
-    "url": "https://github.com/blutorange/js-comparators/issues"
+    "url": "https://github.com/blutorange/js-kagura/issues"
   },
   "devDependencies": {
+    "mocha": "^4.1.0",
+    "chai": "^4.1.2",
     "typedoc": "^0.10.0",
-    "typescript": "^2.8.0-dev.20180202"
+    "typescript": "^2.8.0-dev.20180202",
+    "@babel/cli": "^7.0.0-beta.39",
+    "@babel/core": "^7.0.0-beta.39",
+    "@babel/preset-env": "^7.0.0-beta.39",
+    "babel-minify": "^0.3.0",
+    "core-js": "^2.5.3",
+    "browserify": "^15.2.0"
   },
-  "homepage": "https://github.com/blutorange/js-comparators#readme"
+  "homepage": "https://github.com/blutorange/js-kagura#readme"
 }
