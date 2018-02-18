@@ -47,6 +47,5 @@
     "tslint": "^5.9.1"
   },
   "homepage": "https://github.com/blutorange/js-kagura#readme",
-  "dependencies": {
-  }
+  "dependencies": {}
 }
