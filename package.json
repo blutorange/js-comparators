@@ -6,7 +6,7 @@
   "scripts": {
     "test": "npx nyc --reporter html --reporter text npx mocha --reporter spec",
     "doc": "npm run doc-create && npm run doc-coverage",
-    "doc-create": "npx typedoc --mode file --name js-kagura --readme README.md --out docs --excludeExternals --excludePrivate --excludeProtected --theme minimal main.ts",
+    "doc-create": "npx typedoc --mode file --name js-kagura --readme README.md --out docs --excludeExternals --excludePrivate --excludeNotExported --excludeProtected --theme minimal main.ts",
     "doc-coverage": "npx nyc --reporter html --report-dir docs/coverage npx mocha --reporter spec",
     "clean": "rm -rf main.js main.d.ts docs/* coverage/* dist.js dist.min.js babel.js",
     "transpile": "npx tsc -p tsconfig.json",
