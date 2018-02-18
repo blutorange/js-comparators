@@ -5,8 +5,8 @@
   "main": "main.js",
   "scripts": {
     "test": "npx mocha --reporter spec",
-    "doc": "npx typedoc --mode file --name js-kagura --readme README.md --out doc --excludeExternals --excludePrivate --excludeProtected --theme minimal main.ts",
-    "clean": "rm -rf main.js main.d.ts doc/* dist.js dist.min.js babel.js",
+    "doc": "npx typedoc --mode file --name js-kagura --readme README.md --out docs --excludeExternals --excludePrivate --excludeProtected --theme minimal main.ts",
+    "clean": "rm -rf main.js main.d.ts docs/* dist.js dist.min.js babel.js",
     "transpile": "npx tsc -p tsconfig.json",
     "browserify": "npx browserify babel.js --standalone Kagura -o dist.js",
     "babel": "npx babel main.js --out-file babel.js",

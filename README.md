@@ -2,7 +2,7 @@ Utility methods for creating comparators, ie. `function (left,right)=>number`. S
 
 About 1-2 KB minified without browser polyfills etc.
 
-[Documentation for all methods with examples.](http://htmlpreview.github.io/?https://github.com/blutorange/js-kagura/blob/master/doc/index.html)
+[Documentation for all methods with examples.](http://htmlpreview.github.io/?https://github.com/blutorange/js-kagura/blob/master/docs/index.html)
 
 # Install
 
