@@ -43,10 +43,10 @@
     "nyc": "^11.4.1",
     "tslib": "^1.9.0",
     "typedoc": "^0.10.0",
-    "typescript": "^2.8.0-dev.20180202"
+    "typescript": "^2.8.0-dev.20180202",
+    "tslint": "^5.9.1"
   },
   "homepage": "https://github.com/blutorange/js-kagura#readme",
   "dependencies": {
-    "tslint": "^5.9.1"
   }
 }
