@@ -915,17 +915,17 @@ img { max-width: 100%; }
 				</li>
 			</ul>
 		</li>
-		<li class=" tsd-kind-interface tsd-has-type-parameter">
-			<a href="comparator.html" class="tsd-kind-icon">Comparator</a>
+		<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+			<a href="../globals.html#comparator" class="tsd-kind-icon">Comparator</a>
 		</li>
-		<li class=" tsd-kind-interface tsd-has-type-parameter">
-			<a href="equator.html" class="tsd-kind-icon">Equator</a>
+		<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+			<a href="../globals.html#equator" class="tsd-kind-icon">Equator</a>
 		</li>
-		<li class=" tsd-kind-interface tsd-has-type-parameter">
-			<a href="keyextractor.html" class="tsd-kind-icon">Key<wbr>Extractor</a>
+		<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+			<a href="../globals.html#keyextractor" class="tsd-kind-icon">Key<wbr>Extractor</a>
 		</li>
-		<li class=" tsd-kind-interface tsd-has-type-parameter">
-			<a href="predicate.html" class="tsd-kind-icon">Predicate</a>
+		<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+			<a href="../globals.html#predicate" class="tsd-kind-icon">Predicate</a>
 		</li>
 		<li class=" tsd-kind-variable">
 			<a href="../globals.html#ignorecase" class="tsd-kind-icon">ignore<wbr>Case</a>
@@ -988,17 +988,20 @@ img { max-width: 100%; }
 							<p>Type of the objects to compare.</p>
 							<pre><code class="lang-typescript"><span class="hljs-keyword">class</span> Vector <span class="hljs-keyword">implements</span> Comparable&lt;Vector&gt; {
   <span class="hljs-keyword">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">private</span> x: <span class="hljs-built_in">number</span>, <span class="hljs-keyword">private</span> y: <span class="hljs-built_in">number</span></span>) {}
-  add(vector: Vector) :<span class="hljs-built_in">number</span> {
+  add(vector: Vector) : Vector {
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Vector(<span class="hljs-keyword">this</span>.x + vector.x, <span class="hljs-keyword">this</span>.y + vectory.y)
   }
-  abs2() : <span class="hljs-built_in">number</span> {
+  <span class="hljs-keyword">get</span> abs2() : <span class="hljs-built_in">number</span> {
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.x*<span class="hljs-keyword">this</span>.x + <span class="hljs-keyword">this</span>.y*<span class="hljs-keyword">this</span>.y;
   }
-  abs() : <span class="hljs-built_in">number</span> {
+  <span class="hljs-keyword">get</span> abs() : <span class="hljs-built_in">number</span> {
     <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.sqrt(<span class="hljs-keyword">this</span>.x*<span class="hljs-keyword">this</span>.x + <span class="hljs-keyword">this</span>.y*<span class="hljs-keyword">this</span>.y);
   }
-  compareTo(vector: Vector) {
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.abs2() - vector.abs2();
+  compareTo(vector: Vector) : <span class="hljs-built_in">number</span> {
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.abs2 - vector.abs2;
+  }
+  <span class="hljs-keyword">static</span> <span class="hljs-keyword">get</span> comparator() : Comparator&lt;Vector&gt; {
+    <span class="hljs-keyword">return</span> byProp(<span class="hljs-string">"abs2"</span>)
   }
 }
 </code></pre>
@@ -1040,7 +1043,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/blutorange/js-kagura/blob/c25fb48/main.ts#L71">main.ts:71</a></li>
+								<li>Defined in <a href="https://github.com/blutorange/js-kagura/blob/393f9fd/main.ts#L88">main.ts:88</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>

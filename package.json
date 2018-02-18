@@ -4,14 +4,17 @@
   "description": "Utility methods for creating comparators, ie. function(left,right) : number.",
   "main": "main.js",
   "scripts": {
-    "test": "npx mocha --reporter spec",
-    "doc": "npx typedoc --mode file --name js-kagura --readme README.md --out docs --excludeExternals --excludePrivate --excludeProtected --theme minimal main.ts",
-    "clean": "rm -rf main.js main.d.ts docs/* dist.js dist.min.js babel.js",
+    "test": "npx nyc --reporter html --reporter text npx mocha --reporter spec",
+    "doc": "npm run doc-create && npm run doc-coverage",
+    "doc-create": "npx typedoc --mode file --name js-kagura --readme README.md --out docs --excludeExternals --excludePrivate --excludeProtected --theme minimal main.ts",
+    "doc-coverage": "npx nyc --reporter html --report-dir docs/coverage npx mocha --reporter spec",
+    "clean": "rm -rf main.js main.d.ts docs/* coverage/* dist.js dist.min.js babel.js",
     "transpile": "npx tsc -p tsconfig.json",
+    "lint": "npx tslint -c tslint.json main.ts",
     "browserify": "npx browserify babel.js --standalone Kagura -o dist.js",
     "babel": "npx babel main.js --out-file babel.js",
     "minify": "npx minify dist.js --out-file dist.min.js",
-    "prebuild": "npm run clean",
+    "prebuild": "npm run clean && npm run lint",
     "build": "npm run transpile && npm run babel && npm run browserify && npm run minify && npm run doc",
     "postbuild": "rm babel.js && npm run test"
   },
@@ -29,16 +32,21 @@
     "url": "https://github.com/blutorange/js-kagura/issues"
   },
   "devDependencies": {
-    "mocha": "^4.1.0",
-    "chai": "^4.1.2",
-    "typedoc": "^0.10.0",
-    "typescript": "^2.8.0-dev.20180202",
     "@babel/cli": "^7.0.0-beta.39",
     "@babel/core": "^7.0.0-beta.39",
     "@babel/preset-env": "^7.0.0-beta.39",
     "babel-minify": "^0.3.0",
+    "browserify": "^15.2.0",
+    "chai": "^4.1.2",
     "core-js": "^2.5.3",
-    "browserify": "^15.2.0"
+    "mocha": "^4.1.0",
+    "nyc": "^11.4.1",
+    "tslib": "^1.9.0",
+    "typedoc": "^0.10.0",
+    "typescript": "^2.8.0-dev.20180202"
   },
-  "homepage": "https://github.com/blutorange/js-kagura#readme"
+  "homepage": "https://github.com/blutorange/js-kagura#readme",
+  "dependencies": {
+    "tslint": "^5.9.1"
+  }
 }

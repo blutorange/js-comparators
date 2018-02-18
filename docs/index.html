@@ -910,17 +910,17 @@ img { max-width: 100%; }
 		<li class=" tsd-kind-interface tsd-has-type-parameter">
 			<a href="interfaces/comparable.html" class="tsd-kind-icon">Comparable</a>
 		</li>
-		<li class=" tsd-kind-interface tsd-has-type-parameter">
-			<a href="interfaces/comparator.html" class="tsd-kind-icon">Comparator</a>
+		<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+			<a href="globals.html#comparator" class="tsd-kind-icon">Comparator</a>
 		</li>
-		<li class=" tsd-kind-interface tsd-has-type-parameter">
-			<a href="interfaces/equator.html" class="tsd-kind-icon">Equator</a>
+		<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+			<a href="globals.html#equator" class="tsd-kind-icon">Equator</a>
 		</li>
-		<li class=" tsd-kind-interface tsd-has-type-parameter">
-			<a href="interfaces/keyextractor.html" class="tsd-kind-icon">Key<wbr>Extractor</a>
+		<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+			<a href="globals.html#keyextractor" class="tsd-kind-icon">Key<wbr>Extractor</a>
 		</li>
-		<li class=" tsd-kind-interface tsd-has-type-parameter">
-			<a href="interfaces/predicate.html" class="tsd-kind-icon">Predicate</a>
+		<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+			<a href="globals.html#predicate" class="tsd-kind-icon">Predicate</a>
 		</li>
 		<li class=" tsd-kind-variable">
 			<a href="globals.html#ignorecase" class="tsd-kind-icon">ignore<wbr>Case</a>
@@ -967,8 +967,13 @@ img { max-width: 100%; }
 	<div class="content-wrap">
 		<div class="tsd-panel tsd-typography">
 			<p>Utility methods for creating comparators, ie. <code>function (left,right)=&gt;number</code>. Slightly more versatile than other packages I found.</p>
-			<p>About 1-2 KB minified without browser polyfills etc.</p>
-			<p><a href="http://htmlpreview.github.io/?https://github.com/blutorange/js-kagura/blob/master/doc/index.html">Documentation for all methods with examples.</a></p>
+			<h1 id="size">Size</h1>
+			<ul>
+				<li>~ 700 bytes minified + gzipped without browser polyfills etc.</li>
+				<li>~ 3 KB  bytes minified + gzipped with browser polyfills etc.</li>
+			</ul>
+			<p><a href="https://blutorange.github.io/js-kagura/">Documentation for all methods with examples.</a></p>
+			<p><a href="https://blutorange.github.io/js-kagura/coverage/index.html">Coverage report.</a></p>
 			<h1 id="install">Install</h1>
 			<p>The drill:</p>
 			<pre><code class="lang-sh">npm install --save kagura
@@ -1039,10 +1044,15 @@ npm run build
 						<h3>Interfaces</h3>
 						<ul class="tsd-index-list">
 							<li class="tsd-kind-interface tsd-has-type-parameter"><a href="interfaces/comparable.html" class="tsd-kind-icon">Comparable</a></li>
-							<li class="tsd-kind-interface tsd-has-type-parameter"><a href="interfaces/comparator.html" class="tsd-kind-icon">Comparator</a></li>
-							<li class="tsd-kind-interface tsd-has-type-parameter"><a href="interfaces/equator.html" class="tsd-kind-icon">Equator</a></li>
-							<li class="tsd-kind-interface tsd-has-type-parameter"><a href="interfaces/keyextractor.html" class="tsd-kind-icon">Key<wbr>Extractor</a></li>
-							<li class="tsd-kind-interface tsd-has-type-parameter"><a href="interfaces/predicate.html" class="tsd-kind-icon">Predicate</a></li>
+						</ul>
+					</section>
+					<section class="tsd-index-section ">
+						<h3>Type aliases</h3>
+						<ul class="tsd-index-list">
+							<li class="tsd-kind-type-alias tsd-has-type-parameter"><a href="globals.html#comparator" class="tsd-kind-icon">Comparator</a></li>
+							<li class="tsd-kind-type-alias tsd-has-type-parameter"><a href="globals.html#equator" class="tsd-kind-icon">Equator</a></li>
+							<li class="tsd-kind-type-alias tsd-has-type-parameter"><a href="globals.html#keyextractor" class="tsd-kind-icon">Key<wbr>Extractor</a></li>
+							<li class="tsd-kind-type-alias tsd-has-type-parameter"><a href="globals.html#predicate" class="tsd-kind-icon">Predicate</a></li>
 						</ul>
 					</section>
 					<section class="tsd-index-section ">
@@ -1072,14 +1082,219 @@ npm run build
 			</section>
 		</section>
 		<section class="tsd-panel-group tsd-member-group ">
+			<h2>Type aliases</h2>
+			<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-has-type-parameter">
+				<a name="comparator" class="tsd-anchor"></a>
+				<h3>Comparator</h3>
+				<div class="tsd-signature tsd-kind-icon">Comparator<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/blutorange/js-kagura/blob/393f9fd/main.ts#L45">main.ts:45</a></li>
+					</ul>
+				</aside>
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>A comparator that takes two objects and compares them.</p>
+					</div>
+					<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> myComparator = <span class="hljs-function">(<span class="hljs-params">lhs, rhs</span>) =&gt;</span> lhs &lt; rhs ? <span class="hljs-number">-1</span> : lhs &gt; rhs ? <span class="hljs-number">1</span> : <span class="hljs-number">0</span>;
+[<span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>].sort(myComparator);
+<span class="hljs-comment">// =&gt; [1, 2, 3]</span>
+</code></pre>
+					<dl class="tsd-comment-tags">
+						<dt>param</dt>
+						<dd><p>The first (left-hand side) object to compare.</p>
+						</dd>
+						<dt>param</dt>
+						<dd><p>The second (right-hand side) object to compare.</p>
+						</dd>
+						<dt>returns</dt>
+						<dd><p>A negative number iff lhs is strictly smaller than rhs, a positive number iff
+							lhs is strictly greate than rhs; or 0 otherwise, when both objects are equal.</p>
+						</dd>
+					</dl>
+				</div>
+				<div class="tsd-type-declaration">
+					<h4>Type declaration</h4>
+					<ul class="tsd-parameters">
+						<li class="tsd-parameter-siganture">
+							<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-type-alias tsd-is-not-exported">
+								<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>lhs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span>, rhs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+							</ul>
+							<ul class="tsd-descriptions">
+								<li class="tsd-description">
+									<h4 class="tsd-parameters-title">Parameters</h4>
+									<ul class="tsd-parameters">
+										<li>
+											<h5>lhs: <span class="tsd-signature-type">T</span></h5>
+										</li>
+										<li>
+											<h5>rhs: <span class="tsd-signature-type">T</span></h5>
+										</li>
+									</ul>
+									<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-has-type-parameter">
+				<a name="equator" class="tsd-anchor"></a>
+				<h3>Equator</h3>
+				<div class="tsd-signature tsd-kind-icon">Equator<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/blutorange/js-kagura/blob/393f9fd/main.ts#L28">main.ts:28</a></li>
+					</ul>
+				</aside>
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>An equator that takes to items and checks whether they are
+						equal to each other.</p>
+					</div>
+					<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> sameLength : Equator&lt;string&gt; = <span class="hljs-function">(<span class="hljs-params">lhs, rhs</span>) =&gt;</span> lhs.length === rhs.length;
+[<span class="hljs-string">"a"</span>, <span class="hljs-string">"aa"</span>, <span class="hljs-string">"aaa"</span>].find(sameLength.bind(<span class="hljs-literal">null</span>, <span class="hljs-string">"me"</span>))
+</code></pre>
+					<dl class="tsd-comment-tags">
+						<dt>param</dt>
+						<dd><p>The first (left-hand side) item to compare.</p>
+						</dd>
+						<dt>param</dt>
+						<dd><p>The second (right-hand side) item to compare.</p>
+						</dd>
+						<dt>returns</dt>
+						<dd><p>True iff both items are deemed equal.</p>
+						</dd>
+					</dl>
+				</div>
+				<div class="tsd-type-declaration">
+					<h4>Type declaration</h4>
+					<ul class="tsd-parameters">
+						<li class="tsd-parameter-siganture">
+							<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-type-alias tsd-is-not-exported">
+								<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>lhs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span>, rhs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+							</ul>
+							<ul class="tsd-descriptions">
+								<li class="tsd-description">
+									<h4 class="tsd-parameters-title">Parameters</h4>
+									<ul class="tsd-parameters">
+										<li>
+											<h5>lhs: <span class="tsd-signature-type">T</span></h5>
+										</li>
+										<li>
+											<h5>rhs: <span class="tsd-signature-type">T</span></h5>
+										</li>
+									</ul>
+									<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-has-type-parameter">
+				<a name="keyextractor" class="tsd-anchor"></a>
+				<h3>Key<wbr>Extractor</h3>
+				<div class="tsd-signature tsd-kind-icon">Key<wbr>Extractor<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/blutorange/js-kagura/blob/393f9fd/main.ts#L59">main.ts:59</a></li>
+					</ul>
+				</aside>
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Extracts a key from an object used for comparing the object to other objects.</p>
+					</div>
+					<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> idExtractor = <span class="hljs-function"><span class="hljs-params">customer</span> =&gt;</span> customer.id;
+</code></pre>
+					<dl class="tsd-comment-tags">
+						<dt>param</dt>
+						<dd><p>Object to extract a key from.</p>
+						</dd>
+						<dt>returns</dt>
+						<dd><p>The key for the object.</p>
+						</dd>
+					</dl>
+				</div>
+				<div class="tsd-type-declaration">
+					<h4>Type declaration</h4>
+					<ul class="tsd-parameters">
+						<li class="tsd-parameter-siganture">
+							<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-type-alias tsd-is-not-exported">
+								<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>item<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">K</span></li>
+							</ul>
+							<ul class="tsd-descriptions">
+								<li class="tsd-description">
+									<h4 class="tsd-parameters-title">Parameters</h4>
+									<ul class="tsd-parameters">
+										<li>
+											<h5>item: <span class="tsd-signature-type">T</span></h5>
+										</li>
+									</ul>
+									<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">K</span></h4>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-has-type-parameter">
+				<a name="predicate" class="tsd-anchor"></a>
+				<h3>Predicate</h3>
+				<div class="tsd-signature tsd-kind-icon">Predicate<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/blutorange/js-kagura/blob/393f9fd/main.ts#L13">main.ts:13</a></li>
+					</ul>
+				</aside>
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>A predicate that takes an items and check for a condition.</p>
+					</div>
+					<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> isOdd : Predicate&lt;number&gt; = <span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x % <span class="hljs-number">2</span> === <span class="hljs-number">1</span>;
+[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>,<span class="hljs-number">7</span>,<span class="hljs-number">8</span>,<span class="hljs-number">9</span>].filter(isOdd) <span class="hljs-comment">// =&gt; [1,3,5,7,9]</span>
+</code></pre>
+					<dl class="tsd-comment-tags">
+						<dt>param</dt>
+						<dd><p>Item to test.</p>
+						</dd>
+						<dt>returns</dt>
+						<dd><p>The result of the test.</p>
+						</dd>
+					</dl>
+				</div>
+				<div class="tsd-type-declaration">
+					<h4>Type declaration</h4>
+					<ul class="tsd-parameters">
+						<li class="tsd-parameter-siganture">
+							<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-type-alias tsd-is-not-exported">
+								<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>item<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+							</ul>
+							<ul class="tsd-descriptions">
+								<li class="tsd-description">
+									<h4 class="tsd-parameters-title">Parameters</h4>
+									<ul class="tsd-parameters">
+										<li>
+											<h5>item: <span class="tsd-signature-type">T</span></h5>
+										</li>
+									</ul>
+									<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</section>
+		</section>
+		<section class="tsd-panel-group tsd-member-group ">
 			<h2>Variables</h2>
 			<section class="tsd-panel tsd-member tsd-kind-variable">
 				<a name="ignorecase" class="tsd-anchor"></a>
 				<h3><span class="tsd-flag ts-flagConst">Const</span> ignore<wbr>Case</h3>
-				<div class="tsd-signature tsd-kind-icon">ignore<wbr>Case<span class="tsd-signature-symbol">:</span> <a href="interfaces/comparator.html" class="tsd-signature-type">Comparator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;byKey&lt;string, string&gt;(item &#x3D;&gt; item.toLowerCase())</span></div>
+				<div class="tsd-signature tsd-kind-icon">ignore<wbr>Case<span class="tsd-signature-symbol">:</span> <a href="globals.html#comparator" class="tsd-signature-type">Comparator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;byKey&lt;string, string&gt;(item &#x3D;&gt; item.toLowerCase())</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/blutorange/js-kagura/blob/c25fb48/main.ts#L315">main.ts:315</a></li>
+						<li>Defined in <a href="https://github.com/blutorange/js-kagura/blob/393f9fd/main.ts#L339">main.ts:339</a></li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
@@ -1109,13 +1324,13 @@ npm run build
 				<a name="bykey" class="tsd-anchor"></a>
 				<h3>by<wbr>Key</h3>
 				<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
-					<li class="tsd-signature tsd-kind-icon">by<wbr>Key&lt;T, K&gt;<span class="tsd-signature-symbol">(</span>keyExtractor<span class="tsd-signature-symbol">: </span><a href="interfaces/keyextractor.html" class="tsd-signature-type">KeyExtractor</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span>, keyComparator<span class="tsd-signature-symbol">?: </span><a href="interfaces/comparator.html" class="tsd-signature-type">Comparator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="interfaces/comparator.html" class="tsd-signature-type">Comparator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+					<li class="tsd-signature tsd-kind-icon">by<wbr>Key&lt;T, K&gt;<span class="tsd-signature-symbol">(</span>keyExtractor<span class="tsd-signature-symbol">: </span><a href="globals.html#keyextractor" class="tsd-signature-type">KeyExtractor</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span>, keyComparator<span class="tsd-signature-symbol">?: </span><a href="globals.html#comparator" class="tsd-signature-type">Comparator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="globals.html#comparator" class="tsd-signature-type">Comparator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/blutorange/js-kagura/blob/c25fb48/main.ts#L198">main.ts:198</a></li>
+								<li>Defined in <a href="https://github.com/blutorange/js-kagura/blob/393f9fd/main.ts#L246">main.ts:246</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1123,40 +1338,40 @@ npm run build
 								<p>Compares two objects by computing a key for each object, and the
 								comparing these keys against each other.</p>
 							</div>
-							<pre><code class="lang-javascript">const games = [
-  { title: "Bus adventure", reviews: { ign: 8}, { USGamer: 7} }
-  { title: "jump kicking", reviews: { ign: 4}, { USGamer: 6} }
-  { title:" "The abyss 6", reviews: { ign: 7}, { USGamer: 9} }
+							<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> games = [
+  { <span class="hljs-attr">title</span>: <span class="hljs-string">"Bus adventure"</span>, <span class="hljs-attr">reviews</span>: { <span class="hljs-attr">ign</span>: <span class="hljs-number">8</span>, <span class="hljs-attr">USGamer</span>: <span class="hljs-number">7</span>} },
+  { <span class="hljs-attr">title</span>: <span class="hljs-string">"jump kicking"</span>, <span class="hljs-attr">reviews</span>: { <span class="hljs-attr">ign</span>: <span class="hljs-number">4</span>, <span class="hljs-attr">USGamer</span>: <span class="hljs-number">6</span>} },
+  { <span class="hljs-attr">title</span>: <span class="hljs-string">"The abyss 6"</span>, <span class="hljs-attr">reviews</span>: { <span class="hljs-attr">ign</span>: <span class="hljs-number">7</span>}, <span class="hljs-attr">USGamer</span>: <span class="hljs-number">9</span>} }
 ]
 
-const byRating = byKey(game =&gt; game.reviews.ign + game.reviews.USGamer);
+<span class="hljs-keyword">const</span> byRating = byKey(<span class="hljs-function"><span class="hljs-params">game</span> =&gt;</span> game.reviews.ign + game.reviews.USGamer);
 
-// sort games by their combined rating
+<span class="hljs-comment">// sort games by their combined rating</span>
 games.sort(byRating)
-// =&gt; "jump kicking", "Bus adventure", "The abyss 6"
+<span class="hljs-comment">// =&gt; "jump kicking", "Bus adventure", "The abyss 6"</span>
 
-// sort games by their combined rating, inverse order
+<span class="hljs-comment">// sort games by their combined rating, inverse order</span>
 games.sort(inverse(byRating))
-// =&gt; "The abyss 6", "Bus adventure", "jump kicking"
+<span class="hljs-comment">// =&gt; "The abyss 6", "Bus adventure", "jump kicking"</span>
 
-// sort games by their name, ignoring case
-games.sort(byRating, byKey(game =&gt; game.title, ignoreCase))
-// =&gt; "Bus adventure", "jump kicking", "The abyss 6"
-
-
-const notebooks = [
-  {name: "Mason 42-1", screen: "LED"}
-  {name: "Lolipop 4", screen: "PLASMA"},
-  {name: "Zimbabwe AXR", screen: "OLED"},
-  {name: "Powerlancer 4K", screen: "OLED"},
-  {name: "Clay HiPx 9", screen: "PLASMA"},
-  {name: "Officestation KX-72-3", screen: "LED"}
+<span class="hljs-comment">// sort games by their name, ignoring case</span>
+games.sort(byRating, byKey(<span class="hljs-function"><span class="hljs-params">game</span> =&gt;</span> game.title, ignoreCase))
+<span class="hljs-comment">// =&gt; "Bus adventure", "jump kicking", "The abyss 6"</span>
+</code></pre>
+							<p>Use it to group notebook by their sceen type:</p>
+							<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> notebooks = [
+  {<span class="hljs-attr">name</span>: <span class="hljs-string">"Mason 42-1"</span>, <span class="hljs-attr">screen</span>: <span class="hljs-string">"LED"</span>}
+  {<span class="hljs-attr">name</span>: <span class="hljs-string">"Lolipop 4"</span>, <span class="hljs-attr">screen</span>: <span class="hljs-string">"PLASMA"</span>},
+  {<span class="hljs-attr">name</span>: <span class="hljs-string">"Zimbabwe AXR"</span>, <span class="hljs-attr">screen</span>: <span class="hljs-string">"OLED"</span>},
+  {<span class="hljs-attr">name</span>: <span class="hljs-string">"Powerlancer 4K"</span>, <span class="hljs-attr">screen</span>: <span class="hljs-string">"OLED"</span>},
+  {<span class="hljs-attr">name</span>: <span class="hljs-string">"Clay HiPx 9"</span>, <span class="hljs-attr">screen</span>: <span class="hljs-string">"PLASMA"</span>},
+  {<span class="hljs-attr">name</span>: <span class="hljs-string">"Officestation KX-72-3"</span>, <span class="hljs-attr">screen</span>: <span class="hljs-string">"LED"</span>}
 ]
 
-// index notebooks by screen
-import { Methods } from "elbe";
-Methods.group(notebooks, byKey("screen"))
-// =&gt; {LED: [...], PLASMA: [...], OLED: [...]}
+<span class="hljs-comment">// index notebooks by screen</span>
+<span class="hljs-keyword">import</span> { Methods } <span class="hljs-keyword">from</span> <span class="hljs-string">"elbe"</span>;
+Methods.group(notebooks, byKey(<span class="hljs-string">"screen"</span>))
+<span class="hljs-comment">// =&gt; {LED: [...], PLASMA: [...], OLED: [...]}</span>
 </code></pre>
 						</div>
 						<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -1177,19 +1392,20 @@ Methods.group(notebooks, byKey("screen"))
 						<h4 class="tsd-parameters-title">Parameters</h4>
 						<ul class="tsd-parameters">
 							<li>
-								<h5>keyExtractor: <a href="interfaces/keyextractor.html" class="tsd-signature-type">KeyExtractor</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								<h5>keyExtractor: <a href="globals.html#keyextractor" class="tsd-signature-type">KeyExtractor</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								<div class="tsd-comment tsd-typography">
 									<p>Takes one argument, the object, and returns the key to compare by.</p>
 								</div>
 							</li>
 							<li>
-								<h5><span class="tsd-flag ts-flagDefault value">Default value</span> keyComparator: <a href="interfaces/comparator.html" class="tsd-signature-type">Comparator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;natural</span></h5>
+								<h5><span class="tsd-flag ts-flagDefault value">Default value</span> keyComparator: <a href="globals.html#comparator" class="tsd-signature-type">Comparator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;natural</span></h5>
 								<div class="tsd-comment tsd-typography">
-									<p>Compares the two keys extracted by keyExtractor. Default to the natural order, eg. by using &lt; and &gt;.</p>
+									<p>Compares the two keys extracted by keyExtractor. Default to the
+									natural order, eg. by using &lt; and &gt;.</p>
 								</div>
 							</li>
 						</ul>
-						<h4 class="tsd-returns-title">Returns <a href="interfaces/comparator.html" class="tsd-signature-type">Comparator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						<h4 class="tsd-returns-title">Returns <a href="globals.html#comparator" class="tsd-signature-type">Comparator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						<p>The comparator comparing by key.</p>
 					</li>
 				</ul>
@@ -1198,13 +1414,13 @@ Methods.group(notebooks, byKey("screen"))
 				<a name="byprop" class="tsd-anchor"></a>
 				<h3>by<wbr>Prop</h3>
 				<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
-					<li class="tsd-signature tsd-kind-icon">by<wbr>Prop&lt;T&gt;<span class="tsd-signature-symbol">(</span>keySpecifier<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, comparator<span class="tsd-signature-symbol">?: </span><a href="interfaces/comparator.html" class="tsd-signature-type">Comparator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="interfaces/comparator.html" class="tsd-signature-type">Comparator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+					<li class="tsd-signature tsd-kind-icon">by<wbr>Prop&lt;T&gt;<span class="tsd-signature-symbol">(</span>keySpecifier<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, comparator<span class="tsd-signature-symbol">?: </span><a href="globals.html#comparator" class="tsd-signature-type">Comparator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="globals.html#comparator" class="tsd-signature-type">Comparator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/blutorange/js-kagura/blob/c25fb48/main.ts#L236">main.ts:236</a></li>
+								<li>Defined in <a href="https://github.com/blutorange/js-kagura/blob/393f9fd/main.ts#L284">main.ts:284</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1253,13 +1469,13 @@ chairs.sort(byProp(<span class="hljs-string">"material"</span>, ignoreCase))
 								</div>
 							</li>
 							<li>
-								<h5><span class="tsd-flag ts-flagOptional">Optional</span> comparator: <a href="interfaces/comparator.html" class="tsd-signature-type">Comparator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> comparator: <a href="globals.html#comparator" class="tsd-signature-type">Comparator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								<div class="tsd-comment tsd-typography">
 									<p>How to compare the fields. Defaults to natural order.</p>
 								</div>
 							</li>
 						</ul>
-						<h4 class="tsd-returns-title">Returns <a href="interfaces/comparator.html" class="tsd-signature-type">Comparator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						<h4 class="tsd-returns-title">Returns <a href="globals.html#comparator" class="tsd-signature-type">Comparator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
 					</li>
 				</ul>
 			</section>
@@ -1267,13 +1483,13 @@ chairs.sort(byProp(<span class="hljs-string">"material"</span>, ignoreCase))
 				<a name="bythreshold" class="tsd-anchor"></a>
 				<h3>by<wbr>Threshold</h3>
 				<ul class="tsd-signatures tsd-kind-function">
-					<li class="tsd-signature tsd-kind-icon">by<wbr>Threshold<span class="tsd-signature-symbol">(</span>threshold<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="interfaces/comparator.html" class="tsd-signature-type">Comparator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></li>
+					<li class="tsd-signature tsd-kind-icon">by<wbr>Threshold<span class="tsd-signature-symbol">(</span>threshold<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="globals.html#comparator" class="tsd-signature-type">Comparator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/blutorange/js-kagura/blob/c25fb48/main.ts#L347">main.ts:347</a></li>
+								<li>Defined in <a href="https://github.com/blutorange/js-kagura/blob/393f9fd/main.ts#L371">main.ts:371</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1282,8 +1498,8 @@ chairs.sort(byProp(<span class="hljs-string">"material"</span>, ignoreCase))
 									between two numbers is smaller than the treshold, they
 								compare as equal.</p>
 							</div>
-							<pre><code class="lang-javascript">[<span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">0</span>, <span class="hljs-literal">Infinity</span>, -<span class="hljs-literal">Infinity</span>, <span class="hljs-literal">NaN</span>, <span class="hljs-number">-9</span>].sort(byThreshold(<span class="hljs-number">0.5</span>))
-<span class="hljs-comment">// =&gt; [ -Infinity, -9, 0, 2, 3, Infinity, NaN ]</span>
+							<pre><code class="lang-javascript">[<span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">0</span>, <span class="hljs-literal">Infinity</span>, -<span class="hljs-literal">Infinity</span>, <span class="hljs-literal">NaN</span>, <span class="hljs-literal">NaN</span>, <span class="hljs-number">-9</span>].sort(byThreshold(<span class="hljs-number">0.5</span>))
+<span class="hljs-comment">// =&gt; [ -Infinity, -9, 0, 2, 3, Infinity, NaN, NaN ]</span>
 
 <span class="hljs-keyword">const</span> animals = [
   { <span class="hljs-attr">name</span>: <span class="hljs-string">"alligator"</span>, <span class="hljs-attr">lifeExpectancy</span>: <span class="hljs-number">68</span>},
@@ -1313,7 +1529,7 @@ data.filter(equalTo(byTreshold(<span class="hljs-number">10</span>), <span class
 								</div>
 							</li>
 						</ul>
-						<h4 class="tsd-returns-title">Returns <a href="interfaces/comparator.html" class="tsd-signature-type">Comparator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						<h4 class="tsd-returns-title">Returns <a href="globals.html#comparator" class="tsd-signature-type">Comparator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></h4>
 					</li>
 				</ul>
 			</section>
@@ -1321,13 +1537,13 @@ data.filter(equalTo(byTreshold(<span class="hljs-number">10</span>), <span class
 				<a name="combine" class="tsd-anchor"></a>
 				<h3>combine</h3>
 				<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
-					<li class="tsd-signature tsd-kind-icon">combine&lt;T&gt;<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>comparators<span class="tsd-signature-symbol">: </span><a href="interfaces/comparator.html" class="tsd-signature-type">Comparator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="interfaces/comparator.html" class="tsd-signature-type">Comparator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+					<li class="tsd-signature tsd-kind-icon">combine&lt;T&gt;<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>comparators<span class="tsd-signature-symbol">: </span><a href="globals.html#comparator" class="tsd-signature-type">Comparator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="globals.html#comparator" class="tsd-signature-type">Comparator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/blutorange/js-kagura/blob/c25fb48/main.ts#L284">main.ts:284</a></li>
+								<li>Defined in <a href="https://github.com/blutorange/js-kagura/blob/393f9fd/main.ts#L308">main.ts:308</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1340,7 +1556,7 @@ data.filter(equalTo(byTreshold(<span class="hljs-number">10</span>), <span class
 							</div>
 							<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> data = [ {<span class="hljs-attr">country</span>: <span class="hljs-string">"Japan"</span>, <span class="hljs-attr">city</span>: <span class="hljs-string">"Tokyo"</span>}, {<span class="hljs-attr">country</span>: <span class="hljs-string">"Japan"</span>, <span class="hljs-attr">city</span>: <span class="hljs-string">"Kyoto"</span>} ]
 
-data.sort(combine(byProp(<span class="hljs-string">"foo"</span>), byProp(<span class="hljs-string">"bar"</span>)))
+data.sort(combine(byProp(<span class="hljs-string">"country"</span>), byProp(<span class="hljs-string">"city"</span>)))
 <span class="hljs-comment">// =&gt; [ {country: "Japan", city: "Kyoto"}, {country: "Japan", city: "Tokyo"} ]</span>
 </code></pre>
 						</div>
@@ -1356,13 +1572,13 @@ data.sort(combine(byProp(<span class="hljs-string">"foo"</span>), byProp(<span c
 						<h4 class="tsd-parameters-title">Parameters</h4>
 						<ul class="tsd-parameters">
 							<li>
-								<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>comparators: <a href="interfaces/comparator.html" class="tsd-signature-type">Comparator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span></h5>
+								<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>comparators: <a href="globals.html#comparator" class="tsd-signature-type">Comparator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span></h5>
 								<div class="tsd-comment tsd-typography">
 									<p>List of comparators to compare by.</p>
 								</div>
 							</li>
 						</ul>
-						<h4 class="tsd-returns-title">Returns <a href="interfaces/comparator.html" class="tsd-signature-type">Comparator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						<h4 class="tsd-returns-title">Returns <a href="globals.html#comparator" class="tsd-signature-type">Comparator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						<p>The combined comparator.</p>
 					</li>
 				</ul>
@@ -1377,7 +1593,7 @@ data.sort(combine(byProp(<span class="hljs-string">"foo"</span>), byProp(<span c
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/blutorange/js-kagura/blob/c25fb48/main.ts#L94">main.ts:94</a></li>
+								<li>Defined in <a href="https://github.com/blutorange/js-kagura/blob/393f9fd/main.ts#L130">main.ts:130</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1422,13 +1638,13 @@ data.sort(combine(byProp(<span class="hljs-string">"foo"</span>), byProp(<span c
 				<a name="equalto" class="tsd-anchor"></a>
 				<h3>equal<wbr>To</h3>
 				<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
-					<li class="tsd-signature tsd-kind-icon">equal<wbr>To&lt;T&gt;<span class="tsd-signature-symbol">(</span>item<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span>, test<span class="tsd-signature-symbol">?: </span><a href="interfaces/comparator.html" class="tsd-signature-type">Comparator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="interfaces/predicate.html" class="tsd-signature-type">Predicate</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+					<li class="tsd-signature tsd-kind-icon">equal<wbr>To&lt;T&gt;<span class="tsd-signature-symbol">(</span>item<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span>, test<span class="tsd-signature-symbol">?: </span><a href="globals.html#comparator" class="tsd-signature-type">Comparator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="globals.html#predicate" class="tsd-signature-type">Predicate</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/blutorange/js-kagura/blob/c25fb48/main.ts#L404">main.ts:404</a></li>
+								<li>Defined in <a href="https://github.com/blutorange/js-kagura/blob/393f9fd/main.ts#L432">main.ts:432</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1465,10 +1681,10 @@ notebooks.filter(equalTo(<span class="hljs-string">"OLED"</span>, byKey(<span cl
 								<h5>item: <span class="tsd-signature-type">T</span></h5>
 							</li>
 							<li>
-								<h5><span class="tsd-flag ts-flagDefault value">Default value</span> test: <a href="interfaces/comparator.html" class="tsd-signature-type">Comparator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;natural</span></h5>
+								<h5><span class="tsd-flag ts-flagDefault value">Default value</span> test: <a href="globals.html#comparator" class="tsd-signature-type">Comparator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;natural</span></h5>
 							</li>
 						</ul>
-						<h4 class="tsd-returns-title">Returns <a href="interfaces/predicate.html" class="tsd-signature-type">Predicate</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						<h4 class="tsd-returns-title">Returns <a href="globals.html#predicate" class="tsd-signature-type">Predicate</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						<p>A predicate that returns true iff it is passed a value equal to the given item.</p>
 					</li>
 				</ul>
@@ -1477,13 +1693,13 @@ notebooks.filter(equalTo(<span class="hljs-string">"OLED"</span>, byKey(<span cl
 				<a name="equals" class="tsd-anchor"></a>
 				<h3>equals</h3>
 				<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
-					<li class="tsd-signature tsd-kind-icon">equals&lt;T&gt;<span class="tsd-signature-symbol">(</span>comparator<span class="tsd-signature-symbol">?: </span><a href="interfaces/comparator.html" class="tsd-signature-type">Comparator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="interfaces/equator.html" class="tsd-signature-type">Equator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+					<li class="tsd-signature tsd-kind-icon">equals&lt;T&gt;<span class="tsd-signature-symbol">(</span>comparator<span class="tsd-signature-symbol">?: </span><a href="globals.html#comparator" class="tsd-signature-type">Comparator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="globals.html#equator" class="tsd-signature-type">Equator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/blutorange/js-kagura/blob/c25fb48/main.ts#L376">main.ts:376</a></li>
+								<li>Defined in <a href="https://github.com/blutorange/js-kagura/blob/393f9fd/main.ts#L404">main.ts:404</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1514,13 +1730,13 @@ sameScreen(cars[<span class="hljs-number">0</span>], cars[<span class="hljs-numb
 						<h4 class="tsd-parameters-title">Parameters</h4>
 						<ul class="tsd-parameters">
 							<li>
-								<h5><span class="tsd-flag ts-flagDefault value">Default value</span> comparator: <a href="interfaces/comparator.html" class="tsd-signature-type">Comparator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;natural</span></h5>
+								<h5><span class="tsd-flag ts-flagDefault value">Default value</span> comparator: <a href="globals.html#comparator" class="tsd-signature-type">Comparator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;natural</span></h5>
 								<div class="tsd-comment tsd-typography">
 									<p>Comparator for checking equality between two items.</p>
 								</div>
 							</li>
 						</ul>
-						<h4 class="tsd-returns-title">Returns <a href="interfaces/equator.html" class="tsd-signature-type">Equator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						<h4 class="tsd-returns-title">Returns <a href="globals.html#equator" class="tsd-signature-type">Equator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						<p>An equator returning true for two items iff the given comparator considers them equal.</p>
 					</li>
 				</ul>
@@ -1535,7 +1751,7 @@ sameScreen(cars[<span class="hljs-number">0</span>], cars[<span class="hljs-numb
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/blutorange/js-kagura/blob/c25fb48/main.ts#L124">main.ts:124</a></li>
+								<li>Defined in <a href="https://github.com/blutorange/js-kagura/blob/393f9fd/main.ts#L164">main.ts:164</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1572,13 +1788,13 @@ sameScreen(cars[<span class="hljs-number">0</span>], cars[<span class="hljs-numb
 				<a name="invert" class="tsd-anchor"></a>
 				<h3>invert</h3>
 				<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
-					<li class="tsd-signature tsd-kind-icon">invert&lt;T&gt;<span class="tsd-signature-symbol">(</span>comparator<span class="tsd-signature-symbol">: </span><a href="interfaces/comparator.html" class="tsd-signature-type">Comparator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="interfaces/comparator.html" class="tsd-signature-type">Comparator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+					<li class="tsd-signature tsd-kind-icon">invert&lt;T&gt;<span class="tsd-signature-symbol">(</span>comparator<span class="tsd-signature-symbol">: </span><a href="globals.html#comparator" class="tsd-signature-type">Comparator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="globals.html#comparator" class="tsd-signature-type">Comparator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/blutorange/js-kagura/blob/c25fb48/main.ts#L147">main.ts:147</a></li>
+								<li>Defined in <a href="https://github.com/blutorange/js-kagura/blob/393f9fd/main.ts#L191">main.ts:191</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1606,13 +1822,13 @@ people.sort(invert(byProp(<span class="hljs-string">"name"</span>))
 						<h4 class="tsd-parameters-title">Parameters</h4>
 						<ul class="tsd-parameters">
 							<li>
-								<h5>comparator: <a href="interfaces/comparator.html" class="tsd-signature-type">Comparator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								<h5>comparator: <a href="globals.html#comparator" class="tsd-signature-type">Comparator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								<div class="tsd-comment tsd-typography">
 									<p>Comparator to invert.</p>
 								</div>
 							</li>
 						</ul>
-						<h4 class="tsd-returns-title">Returns <a href="interfaces/comparator.html" class="tsd-signature-type">Comparator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						<h4 class="tsd-returns-title">Returns <a href="globals.html#comparator" class="tsd-signature-type">Comparator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						<ul>
 							<li>Inverted comparator.</li>
 						</ul>
@@ -1629,7 +1845,7 @@ people.sort(invert(byProp(<span class="hljs-string">"name"</span>))
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/blutorange/js-kagura/blob/c25fb48/main.ts#L108">main.ts:108</a></li>
+								<li>Defined in <a href="https://github.com/blutorange/js-kagura/blob/393f9fd/main.ts#L144">main.ts:144</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1666,19 +1882,19 @@ people.sort(invert(byProp(<span class="hljs-string">"name"</span>))
 				<a name="split" class="tsd-anchor"></a>
 				<h3>split</h3>
 				<ul class="tsd-signatures tsd-kind-function tsd-is-not-exported">
-					<li class="tsd-signature tsd-kind-icon">split<span class="tsd-signature-symbol">(</span>string<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, by<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></li>
+					<li class="tsd-signature tsd-kind-icon">split<span class="tsd-signature-symbol">(</span>toSplit<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, by<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/blutorange/js-kagura/blob/c25fb48/main.ts#L242">main.ts:242</a></li>
+								<li>Defined in <a href="https://github.com/blutorange/js-kagura/blob/393f9fd/main.ts#L91">main.ts:91</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
 						<ul class="tsd-parameters">
 							<li>
-								<h5>string: <span class="tsd-signature-type">string</span></h5>
+								<h5>toSplit: <span class="tsd-signature-type">string</span></h5>
 							</li>
 							<li>
 								<h5>by: <span class="tsd-signature-type">string</span></h5>
@@ -1692,13 +1908,13 @@ people.sort(invert(byProp(<span class="hljs-string">"name"</span>))
 				<a name="within" class="tsd-anchor"></a>
 				<h3>within</h3>
 				<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
-					<li class="tsd-signature tsd-kind-icon">within&lt;T&gt;<span class="tsd-signature-symbol">(</span>lower<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span>, upper<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span>, comparator<span class="tsd-signature-symbol">?: </span><a href="interfaces/comparator.html" class="tsd-signature-type">Comparator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, mode<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">"[]"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"()"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"[)"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"(]"</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="interfaces/predicate.html" class="tsd-signature-type">Predicate</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+					<li class="tsd-signature tsd-kind-icon">within&lt;T&gt;<span class="tsd-signature-symbol">(</span>lower<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span>, upper<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span>, __namedParameters<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="globals.html#predicate" class="tsd-signature-type">Predicate</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/blutorange/js-kagura/blob/c25fb48/main.ts#L446">main.ts:446</a></li>
+								<li>Defined in <a href="https://github.com/blutorange/js-kagura/blob/393f9fd/main.ts#L475">main.ts:475</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1758,19 +1974,46 @@ foods.filter(within(<span class="hljs-keyword">new</span> <span class="hljs-buil
 								</div>
 							</li>
 							<li>
-								<h5><span class="tsd-flag ts-flagDefault value">Default value</span> comparator: <a href="interfaces/comparator.html" class="tsd-signature-type">Comparator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;natural</span></h5>
-								<div class="tsd-comment tsd-typography">
-									<p>Comparator for comparing items.</p>
-								</div>
-							</li>
-							<li>
-								<h5><span class="tsd-flag ts-flagDefault value">Default value</span> mode: <span class="tsd-signature-type">"[]"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"()"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"[)"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"(]"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;[]&quot;</span></h5>
-								<div class="tsd-comment tsd-typography">
-									<p>Whether to include the left and right hand side. Must be one of [] () [) (]. Defaults to [].</p>
-								</div>
+								<h5><span class="tsd-flag ts-flagDefault value">Default value</span> __namedParameters: <span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> =&nbsp;{}</span></h5>
+								<ul class="tsd-parameters">
+									<li class="tsd-parameter">
+										<h5>comparator<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></h5>
+										<div class="tsd-comment tsd-typography">
+											<p>Comparator for comparing items.</p>
+										</div>
+										<ul class="tsd-parameters">
+											<li class="tsd-parameter-siganture">
+												<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-variable tsd-is-not-exported">
+													<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>lhs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span>, rhs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+												</ul>
+												<ul class="tsd-descriptions">
+													<li class="tsd-description">
+														<h4 class="tsd-parameters-title">Parameters</h4>
+														<ul class="tsd-parameters">
+															<li>
+																<h5>lhs: <span class="tsd-signature-type">T</span></h5>
+															</li>
+															<li>
+																<h5>rhs: <span class="tsd-signature-type">T</span></h5>
+															</li>
+														</ul>
+														<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+													</li>
+												</ul>
+											</li>
+										</ul>
+									</li>
+									<li class="tsd-parameter">
+										<h5>mode<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"[]"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"()"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"[)"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"(]"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"[["</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"]]"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"]["</span></h5>
+										<div class="tsd-comment tsd-typography">
+											<p>Whether to include the left and right hand side. Must be one of [] () [) (].
+											Defaults to []. Also allows the notation ][ for (), [[ for [), and ]] for (].</p>
+										</div>
+									</li>
+								</ul>
 							</li>
 						</ul>
-						<h4 class="tsd-returns-title">Returns <a href="interfaces/predicate.html" class="tsd-signature-type">Predicate</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						<h4 class="tsd-returns-title">Returns <a href="globals.html#predicate" class="tsd-signature-type">Predicate</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
 					</li>
 				</ul>
 			</section>

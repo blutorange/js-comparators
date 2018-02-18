@@ -1,0 +1,22 @@
+{
+    "$schema": "http://json.schemastore.org/tslint",   
+    "defaultSeverity": "error",
+    "extends": [
+        "tslint:recommended"
+    ],
+    "jsRules": {
+    },
+    "rules": {
+        "arrow-parens": {
+            "options": "ban-single-arg-parens"
+        },
+        "array-type": {
+            "options": "array"
+        },
+        "interface-name": {
+            "options": "never-prefix"
+        },
+        "one-line": false
+    },
+    "rulesDirectory": []
+}

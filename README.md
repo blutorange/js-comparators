@@ -1,8 +1,13 @@
 Utility methods for creating comparators, ie. `function (left,right)=>number`. Slightly more versatile than other packages I found.
 
-About 1-2 KB minified without browser polyfills etc.
+# Size 
 
-[Documentation for all methods with examples.](http://htmlpreview.github.io/?https://github.com/blutorange/js-kagura/blob/master/docs/index.html)
+* ~ 700 bytes minified + gzipped without browser polyfills etc.
+* ~ 3 KB  bytes minified + gzipped with browser polyfills etc.
+
+[Documentation for all methods with examples.](https://blutorange.github.io/js-kagura/)
+
+[Coverage report.](https://blutorange.github.io/js-kagura/coverage/index.html)
 
 # Install
 

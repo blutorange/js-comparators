@@ -1,15 +1,7 @@
-export interface Predicate<T> {
-    (item: T): boolean;
-}
-export interface Equator<T> {
-    (lhs: T, rhs: T): boolean;
-}
-export interface Comparator<T> {
-    (lhs: T, rhs: T): number;
-}
-export interface KeyExtractor<T, K> {
-    (item: T): K;
-}
+export declare type Predicate<T> = (item: T) => boolean;
+export declare type Equator<T> = (lhs: T, rhs: T) => boolean;
+export declare type Comparator<T> = (lhs: T, rhs: T) => number;
+export declare type KeyExtractor<T, K> = (item: T) => K;
 export interface Comparable<T> {
     compareTo(rhs: T): number;
 }
@@ -24,4 +16,7 @@ export declare const ignoreCase: Comparator<string>;
 export declare function byThreshold(threshold?: number): Comparator<number>;
 export declare function equals<T>(comparator?: Comparator<T>): Equator<T>;
 export declare function equalTo<T>(item: T, test?: Comparator<T>): Predicate<T>;
-export declare function within<T>(lower: T, upper: T, comparator?: Comparator<T>, mode?: "[]" | "()" | "[)" | "(]"): Predicate<T>;
+export declare function within<T>(lower: T, upper: T, {comparator, mode}?: {
+    comparator?: Comparator<T>;
+    mode?: "[]" | "()" | "[)" | "(]" | "[[" | "]]" | "][";
+}): Predicate<T>;

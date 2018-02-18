@@ -18,7 +18,10 @@
         "pretty": true,
         "noUnusedLocals": true,
         "noImplicitAny": true,
-        "noImplicitThis": true
+        "noImplicitThis": true,
+        "strictPropertyInitialization": true,
+        "strictFunctionTypes": true,
+        "strictNullChecks": true
     },
     "exclude": [
         "node_modules/**"

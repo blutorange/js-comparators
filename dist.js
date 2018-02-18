@@ -7,6 +7,27 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+function split(toSplit, by) {
+  var result = [];
+  var buffer = [];
+
+  for (var i = 0, j = toSplit.length; i < j; ++i) {
+    var c = toSplit[i];
+
+    if (c === "\\") {
+      buffer.push(toSplit[++i]);
+    } else if (c === by) {
+      result.push(buffer.join(""));
+      buffer = [];
+    } else {
+      buffer.push(c);
+    }
+  }
+
+  result.push(buffer.join(""));
+  return result;
+}
+
 function comparable(lhs, rhs) {
   return lhs.compareTo(rhs);
 }
@@ -14,22 +35,32 @@ function comparable(lhs, rhs) {
 exports.comparable = comparable;
 
 function natural(lhs, rhs) {
-  if (lhs < rhs) return -1;
-  if (lhs > rhs) return 1;
+  if (lhs < rhs) {
+    return -1;
+  }
+
+  if (lhs > rhs) {
+    return 1;
+  }
+
   return 0;
 }
 
 exports.natural = natural;
-;
 
 function inverse(lhs, rhs) {
-  if (lhs < rhs) return 1;
-  if (lhs > rhs) return -1;
+  if (lhs < rhs) {
+    return 1;
+  }
+
+  if (lhs > rhs) {
+    return -1;
+  }
+
   return 0;
 }
 
 exports.inverse = inverse;
-;
 
 function invert(comparator) {
   return function (lhs, rhs) {
@@ -49,7 +80,7 @@ function byKey(keyExtractor) {
 exports.byKey = byKey;
 
 function byProp(keySpecifier, comparator) {
-  var fields = keySpecifier.indexOf("\\.") >= 0 ? split(keySpecifier, '.') : keySpecifier.split('.');
+  var fields = keySpecifier.indexOf("\\.") >= 0 ? split(keySpecifier, ".") : keySpecifier.split(".");
 
   var keyExtractor = function keyExtractor(object) {
     return fields.reduce(function (obj, field) {
@@ -61,32 +92,6 @@ function byProp(keySpecifier, comparator) {
 }
 
 exports.byProp = byProp;
-
-function split(string, by) {
-  var result = [];
-  var buffer = [];
-
-  for (var i = 0, j = string.length; i < j; ++i) {
-    var c = string[i];
-
-    if (c === '\\') {
-      buffer.push(string[++i]);
-    } else if (c === by) {
-      if (buffer.length > 0) {
-        result.push(buffer.join(''));
-        buffer = [];
-      }
-    } else {
-      buffer.push(c);
-    }
-  }
-
-  if (buffer.length > 0) {
-    result.push(buffer.join(''));
-  }
-
-  return result;
-}
 
 function combine() {
   for (var _len = arguments.length, comparators = new Array(_len), _key = 0; _key < _len; _key++) {
@@ -108,7 +113,6 @@ function combine() {
 }
 
 exports.combine = combine;
-;
 exports.ignoreCase = byKey(function (item) {
   return item.toLowerCase();
 });
@@ -117,14 +121,19 @@ function byThreshold() {
   var threshold = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1E-12;
   threshold = Math.max(0, threshold);
   return function (lhs, rhs) {
-    if (lhs === rhs) return 0;
-    if (lhs < rhs) return rhs - lhs < threshold ? 0 : -1;
-    return isNaN(rhs) ? -1 : lhs - rhs < threshold ? 0 : 1;
+    if (lhs === rhs) {
+      return 0;
+    }
+
+    if (lhs < rhs) {
+      return rhs - lhs < threshold ? 0 : -1;
+    }
+
+    return isNaN(rhs) ? isNaN(lhs) ? 0 : -1 : lhs - rhs < threshold ? 0 : 1;
   };
 }
 
 exports.byThreshold = byThreshold;
-;
 
 function equals() {
   var comparator = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : natural;
@@ -145,8 +154,11 @@ function equalTo(item) {
 exports.equalTo = equalTo;
 
 function within(lower, upper) {
-  var comparator = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : natural;
-  var mode = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : "[]";
+  var _ref = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {},
+      _ref$comparator = _ref.comparator,
+      comparator = _ref$comparator === void 0 ? natural : _ref$comparator,
+      _ref$mode = _ref.mode,
+      mode = _ref$mode === void 0 ? "[]" : _ref$mode;
 
   switch (mode) {
     case "[]":
@@ -154,19 +166,22 @@ function within(lower, upper) {
         return comparator(lower, item) <= 0 && comparator(item, upper) <= 0;
       };
 
+    case "()":
+    case "][":
+      return function (item) {
+        return comparator(lower, item) < 0 && comparator(item, upper) < 0;
+      };
+
     case "[)":
+    case "[[":
       return function (item) {
         return comparator(lower, item) <= 0 && comparator(item, upper) < 0;
       };
 
     case "(]":
+    case "]]":
       return function (item) {
         return comparator(lower, item) < 0 && comparator(item, upper) <= 0;
-      };
-
-    case "()":
-      return function (item) {
-        return comparator(lower, item) < 0 && comparator(item, upper) < 0;
       };
   }
 
