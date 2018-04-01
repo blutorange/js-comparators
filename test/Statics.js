@@ -1,6 +1,13 @@
 const expect = require("chai").expect
 const _ = require("../main.js")
 
+function checkUndefined(comparator, item) {
+    expect(comparator(item, item)).to.equal(0);
+    expect(comparator(undefined, item)).to.equal(-1);
+    expect(comparator(item, undefined)).to.equal(1);
+    expect(comparator(undefined, undefined)).to.equal(0);
+}
+
 function getData(types = ["nil", "int", "float", "number", "bool", "string", "regexp", "array", "object", "date"]) {
     types = new Set(types)
     let data = []
@@ -56,10 +63,17 @@ function checkSanity(data, comparator) {
 }
 
 describe("natural", () => {
+    it("should handle undefined", () => {
+        checkUndefined(_.natural, 0);
+    });
+
     it("should sort the same as the default js comparator", () => {
-        const data = getData()
+        const data = getData();
         for (let i = 0; i < data.length; ++i) {
             for (let j = 0; j < data.length; ++j) {
+                if (data[i] == undefined || data[j] === undefined) {
+                    continue;
+                }
                 expect(_.natural(data[i], data[j])).to.equal(data[i] < data[j] ? -1 : data[i] > data[j] ? 1 : 0);
             }
         }
@@ -78,6 +92,10 @@ describe("natural", () => {
 })
 
 describe("ignoreCase", () => {
+    it("should handle undefined", () => {
+        checkUndefined(_.ignoreCase, "");
+    });
+
     it("should ignore case", () => {
         const data = getData(["string"]).sort((x, y) => _.natural(x.toLowerCase(), y.toLowerCase()))
         for (let i = 0; i < data.length; ++i) {
@@ -95,10 +113,17 @@ describe("ignoreCase", () => {
 })
 
 describe("inverse", () => {
+    it("should handle undefined", () => {
+        checkUndefined(_.inverse, 0);
+    });
+
     it("should sort the same as the default js comparator", () => {
         const data = getData()
         for (let i = 0; i < data.length; ++i) {
             for (let j = 0; j < data.length; ++j) {
+                if (data[i] == undefined || data[j] === undefined) {
+                    continue;
+                }
                 expect(_.inverse(data[i], data[j])).to.equal(data[i] < data[j] ? 1 : data[i] > data[j] ? -1 : 0)
             }
         }
@@ -117,6 +142,11 @@ describe("inverse", () => {
 })
 
 describe("invert", () => {
+    it("should handle undefined", () => {
+        checkUndefined(_.invert(_.natural), 0);
+        checkUndefined(_.invert(_.inverse), 0);
+    });
+
     it("should give the opposite order", () => {
         expect(_.invert(_.natural)(1, 2)).to.equal(1)
         expect(_.invert(_.natural)(2, 1)).to.equal(-1)
@@ -126,6 +156,16 @@ describe("invert", () => {
 
 describe("equals", () => {
     const e = _.equals;
+    it("should handle undefined", () => {
+        const l = _.byProp("length")
+        expect(_.equals()(undefined, 0)).to.be.false;
+        expect(_.equals()(0, undefined)).to.be.false;
+        expect(_.equals()(undefined, undefined)).to.be.true;
+        expect(_.equals(l)(undefined, "")).to.be.false;
+        expect(_.equals(l)("", undefined)).to.be.false;
+        expect(_.equals(l)(undefined, undefined)).to.be.true;
+    });
+
     it("should use the natural order by default", () => {
         expect(e()(9, 9)).to.be.true
         expect(e()(9, 5)).to.be.false
@@ -164,6 +204,10 @@ describe("comparable", () => {
     const c = new Vector2(3,4)
     const d = new Vector2(5,12)
     const e = new Vector2(15,8)
+
+    it("should handle undefined", () => {
+        checkUndefined(_.comparable, a);
+    });
 
     it("should implement the interface correctly", () => {
         expect(a.compareTo(a)).to.equal(0)
@@ -235,6 +279,15 @@ describe("comparable", () => {
 
 describe("equalTo", () => {
     const e = _.equalTo
+    it("should handle undefined", () => {
+        const l = _.byProp("length")
+        expect(e(undefined)(0)).to.be.false;
+        expect(e(0)(undefined)).to.be.false;
+        expect(e(undefined)(undefined)).to.be.true;
+        expect(e(undefined, l)(0)).to.be.false;
+        expect(e(0, l)(undefined)).to.be.false;
+        expect(e(undefined, l)(undefined)).to.be.true;
+    });
     it("should use the natural order by default", () => {
         expect(e(9)(9)).to.be.true
         expect(e(9)(5)).to.be.false
@@ -253,6 +306,10 @@ describe("equalTo", () => {
 
 describe("byThreshold", () => {
     const t = _.byThreshold
+    it("should handle undefined", () => {
+        checkUndefined(t(), 0);
+        checkUndefined(t(100), 0);
+    });
     it("should assume a default threshold of 1E-12", () => {
         expect(t()(0, 0)).to.be.equal(0)
         expect(t()(0, 0.5E-12)).to.be.equal(0)
@@ -295,6 +352,17 @@ describe("byThreshold", () => {
 })
 
 describe("combine", () => {
+    it("should handle undefined", () => {
+        const c = _.combine(_.byProp("country"), _.byProp("city"))
+        const item1 = { country: "Japan", city: "Tokyo" };
+        const item2 = { city: "Tokyo" };
+        const item3 = { country: "Japan" };
+        const item4 = {};
+        checkUndefined(c, item1);
+        checkUndefined(c, item2);
+        checkUndefined(c, item3);
+        checkUndefined(c, item4);
+    });
     it("should sort by the first, then by the second comparator", () => {
         const data = [
             { country: "Japan", city: "Tokyo" },
@@ -320,6 +388,12 @@ describe("combine", () => {
 
 describe("byKey", () => {
     const k = _.byKey;
+    it("should handle undefined", () => {
+        checkUndefined(k(x => x.length), "");
+        checkUndefined(k(x => x.length, _.inverse), "");
+        checkUndefined(k(x => x.length), {});
+        checkUndefined(k(x => x.length, _.inverse), {});
+    });
     it("should use the natural comparator by default", () => {
         expect(k(x => x.length)("a", "aa")).to.equal(-1)
         expect(k(x => x.length)("aa", "aa")).to.equal(0)
@@ -334,6 +408,14 @@ describe("byKey", () => {
 
 describe("byProp", () => {
     const p = _.byProp;
+    it("should handle undefined", () => {
+        checkUndefined(p("length"), "");
+        checkUndefined(p("length", _.inverse), "");
+        checkUndefined(p("length"), {});
+        checkUndefined(p("length", _.inverse), {});
+        checkUndefined(p("foo.bar"), {});
+        checkUndefined(p("foo.bar", _.inverse), {});
+    });
     it("should compare by the given property", () => {
         expect(p("length")("a", "aa")).to.equal(-1)
         expect(p("length")("aa", "a")).to.equal(1)
@@ -384,6 +466,10 @@ describe("byProp", () => {
 
 describe("within", () => {
     const w = _.within
+    it("should handle undefined", () => {
+        expect(w(0,1)(undefined)).to.be.false;
+        expect(w(0,1, {comparator: _.natural})(undefined)).to.be.false;
+    });
     it("should use the default comparator by default", () => {
         expect(w(0, 1)(-1)).to.be.false
         expect(w(0, 1)(0.5)).to.be.true

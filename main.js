@@ -20,47 +20,65 @@ function split(toSplit, by) {
     return result;
 }
 function comparable(lhs, rhs) {
-    return lhs.compareTo(rhs);
+    if (lhs === undefined) {
+        return rhs === undefined ? 0 : -1;
+    }
+    return rhs === undefined ? 1 : lhs.compareTo(rhs);
 }
 exports.comparable = comparable;
 function natural(lhs, rhs) {
-    if (lhs < rhs) {
-        return -1;
-    }
-    if (lhs > rhs) {
-        return 1;
-    }
-    return 0;
+    return lhs !== undefined ?
+        (rhs !== undefined ?
+            (lhs < rhs ? -1 : lhs > rhs ? 1 : 0) :
+            1) :
+        (rhs !== undefined ? -1 : 0);
 }
 exports.natural = natural;
 function inverse(lhs, rhs) {
-    if (lhs < rhs) {
-        return 1;
-    }
-    if (lhs > rhs) {
-        return -1;
-    }
-    return 0;
+    return lhs !== undefined ?
+        (rhs !== undefined ?
+            (lhs < rhs ? 1 : lhs > rhs ? -1 : 0) :
+            1) :
+        (rhs !== undefined ? -1 : 0);
 }
 exports.inverse = inverse;
 function invert(comparator) {
-    return (lhs, rhs) => -comparator(lhs, rhs);
+    return (lhs, rhs) => {
+        if (lhs === undefined || rhs === undefined) {
+            return comparator(lhs, rhs);
+        }
+        return -comparator(lhs, rhs);
+    };
 }
 exports.invert = invert;
 function byKey(keyExtractor, keyComparator = natural) {
-    return (lhs, rhs) => keyComparator(keyExtractor(lhs), keyExtractor(rhs));
+    return (lhs, rhs) => {
+        if (lhs === undefined) {
+            return rhs === undefined ? 0 : -1;
+        }
+        return rhs === undefined ? 1 : keyComparator(keyExtractor(lhs), keyExtractor(rhs));
+    };
 }
 exports.byKey = byKey;
 function byProp(keySpecifier, comparator) {
-    const fields = keySpecifier.indexOf("\\.") >= 0 ? split(keySpecifier, ".") : keySpecifier.split(".");
-    const keyExtractor = (object) => fields.reduce((obj, field) => obj[field], object);
+    if (keySpecifier.indexOf(".") < 0) {
+        return byKey(x => x[keySpecifier], comparator);
+    }
+    const fields = split(keySpecifier, ".");
+    const keyExtractor = (object) => {
+        let value = object;
+        for (let i = 0, j = fields.length; i < j && value !== undefined; ++i) {
+            value = value[fields[i]];
+        }
+        return value;
+    };
     return byKey(keyExtractor, comparator);
 }
 exports.byProp = byProp;
 function combine(...comparators) {
     return (lhs, rhs) => {
-        for (const comparator of comparators) {
-            const result = comparator(lhs, rhs);
+        for (let i = 0, j = comparators.length; i < j; ++i) {
+            const result = comparators[i](lhs, rhs);
             if (result !== 0) {
                 return result;
             }
@@ -75,6 +93,12 @@ function byThreshold(threshold = 1E-12) {
     return (lhs, rhs) => {
         if (lhs === rhs) {
             return 0;
+        }
+        if (lhs === undefined) {
+            return -1;
+        }
+        if (rhs === undefined) {
+            return 1;
         }
         if (lhs < rhs) {
             return rhs - lhs < threshold ? 0 : -1;

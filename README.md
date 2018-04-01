@@ -1,9 +1,8 @@
 Utility methods for creating comparators, ie. `function (left,right)=>number`. Slightly more versatile than other packages I found.
 
-# Size 
-
 * ~ 700 bytes minified + gzipped without browser polyfills etc.
-* ~ 3 KB  bytes minified + gzipped with browser polyfills etc.
+
+# Documenation
 
 [Documentation for all methods with examples.](https://blutorange.github.io/js-kagura/)
 
@@ -24,11 +23,11 @@ Exposes a global object `window.Kagura`.
 
 # Usage
 
-Compare objects by their id property:
+Compare objects by their `id` property:
 
 ```javascript
 // import this lib
-const { byKey } = require("comparators")
+const { byKey } = require("kagura")
 
 // create array and sort it with a custom comparator
 const array = [ {id: 6}, {id: 3} ]
@@ -39,11 +38,11 @@ array.sort(byKey(item => item.id));
 If you are comparing simply by some property, you can also use `byProp`:
 
 ```javascript
-const { byProp } = require("comparators")
+const { byProp } = require("kagura")
 array.sort(byProp("id"))
 ```
 
-Compare objects by their data->id property in descending order:
+Compare objects by their `data.id` property in descending order:
 
 ```javascript
 byProp("data.id", inverse) // preferred
@@ -54,7 +53,7 @@ byKey(item => - item.data.id)
 byKey(item => item.data.id, inverse)
 ```
 
-Compare objects by their lastName property first, then firstName, then age.
+Compare objects by their `lastName` property first, then `firstName`, then `age`.
 
 ```javascript
 combine(
@@ -85,6 +84,61 @@ Compare objects by using the comparison operator > and <.
 [9,7,8].sort(inverse) // => [9,8,7]
 ```
 
+# Handling undefined
+
+`undefined` always compares as less than any other value. This is different than how
+Array#sort handles `undefined`, but in line with the idea that an undefined `string` represents a blank string, which sorts before other strings alphabetically. This
+behaviour is also useful when working with comparisons on multiple properties.
+
+To illustrate this, consider the following list of users, sorted first by their given
+name, then by their family name.
+
+```javascript
+const user1 = {given: "dave", family: "oxford"};
+const user2 = {given: "dave", family: "carbide"};
+const user3 = {given: "laura", family: "oxford"};
+const user4 = {given: "laura", family: "borea"};
+const user5 = {given: "odo", family: "frodo"};
+const users = [user1, user2, user3, user4, user5];
+const comparator = combine(byProp("given"), byProp("family"));
+users.sort(comparator);
+// => [user2, user1, user4, user3, user5]
+```
+
+Now assume we want to get all users whose given name is `laura`. We could iterate
+over all entries and apply a filter:
+
+```javascript
+users.filter(user => user.given === "laura");
+``` 
+
+This works, but this takes `O(n)` time to run. Assuming the list is already
+sorted, a binary search runs in `O(log(n))` time. We construct a virtual user
+object with only a given name `{given: "laura"}` and determine the position
+where it would sort in the ordered list.
+
+```javascript
+const search = {given: "laura"};
+const start = users.findIndex(user => comparator(search, user) <= 0);
+// start === 2  
+```
+
+Since `undefined` sorts before any other value, the start position now points
+to the first user in the sorted list with a given name of `laura`. Now we can
+find all `laura`s by iterating from the start position until we encounter a user
+with a different given name.
+
+```javascript
+for (let user = users[start]; user.given === `laura`; user= users[++start]) {
+  // do something with the user
+  console.log(user);
+}
+// => logs user4 and user3
+```
+
+This approach also works well with binary search trees, that always keep
+their elements sorted.
+
 # Build
 
 Probably not going to work on Windows.
@@ -94,6 +148,25 @@ git clone https://github.com/blutorange/js-kagura
 cd js-kagura
 npm install
 npm run build
+```
+
+# Change log
+
+## 1.1.0
+
+- Updated all methods to handle `undefined` values. [See above](#handling-undefined)
+  for details.
+- Extracted common interfaces and types (Comparator, Predicate etc.) to
+  [their own package](https://npmjs.com/package/andross). This affects you only if
+  you are using typescript and are referring to these types explicitly; in this case
+  please import them from the package `andross` instead from this package `kagura`, see
+  below.
+
+```typescript
+// If using typescript, change this
+import { Comparable, Comparator, Equator, KeyExtractor, Predicate } from "kagura";
+// to
+import { Comparable, Comparator, Equator, KeyExtractor, Predicate } from "andross";
 ```
 
 # Teh name
