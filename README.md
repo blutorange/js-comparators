@@ -147,7 +147,7 @@ The built-in array sort method always sorts `undefined` last, irrespective of th
 to sort `undefined` properly:
 
 ```javascript
-const { sort } = require("kagura);
+const { sort } = require("kagura");
 
 // Comparator "natural" sorts undefind before any other value.
 // But the built-in function always puts undefined last.

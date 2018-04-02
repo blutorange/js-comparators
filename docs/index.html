@@ -1062,15 +1062,15 @@ users.sort(comparator);
 			<h2 id="sorting-arrays">Sorting arrays</h2>
 			<p>The built-in array sort method always sorts <code>undefined</code> last, irrespective of the given comparator. Use one of the wrapper methods
 			to sort <code>undefined</code> properly:</p>
-			<pre><code class="lang-javascript">const { sort } = require("kagura);
+			<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> { sort } = <span class="hljs-built_in">require</span>(<span class="hljs-string">"kagura"</span>);
 
-// Comparator "natural" sorts undefind before any other value.
-// But the built-in function always puts undefined last.
-[1,2,undefined,3].sort(natural);
-// =&gt; [1,2,3,undefined]
+<span class="hljs-comment">// Comparator "natural" sorts undefind before any other value.</span>
+<span class="hljs-comment">// But the built-in function always puts undefined last.</span>
+[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-literal">undefined</span>,<span class="hljs-number">3</span>].sort(natural);
+<span class="hljs-comment">// =&gt; [1,2,3,undefined]</span>
 
-sort([1,2,undefined,3], natural)
-// =&gt; [undefined, 1, 2, 3]
+sort([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-literal">undefined</span>,<span class="hljs-number">3</span>], natural)
+<span class="hljs-comment">// =&gt; [undefined, 1, 2, 3]</span>
 </code></pre>
 			<h1 id="build">Build</h1>
 			<p>Probably not going to work on Windows.</p>
@@ -1145,7 +1145,7 @@ npm run build
 				<div class="tsd-signature tsd-kind-icon">ignore<wbr>Case<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Comparator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Maybe</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;byKey&lt;string, string&gt;(item &#x3D;&gt; item.toLowerCase())</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/blutorange/js-kagura/blob/70e75f6/main.ts#L397">main.ts:397</a></li>
+						<li>Defined in <a href="https://github.com/blutorange/js-kagura/blob/260576a/main.ts#L397">main.ts:397</a></li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
@@ -1181,7 +1181,7 @@ npm run build
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/blutorange/js-kagura/blob/70e75f6/main.ts#L289">main.ts:289</a></li>
+								<li>Defined in <a href="https://github.com/blutorange/js-kagura/blob/260576a/main.ts#L289">main.ts:289</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1272,7 +1272,7 @@ Methods.group(notebooks, byKey(<span class="hljs-string">"screen"</span>))
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/blutorange/js-kagura/blob/70e75f6/main.ts#L333">main.ts:333</a></li>
+								<li>Defined in <a href="https://github.com/blutorange/js-kagura/blob/260576a/main.ts#L333">main.ts:333</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1341,7 +1341,7 @@ chairs.sort(byProp(<span class="hljs-string">"material"</span>, ignoreCase))
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/blutorange/js-kagura/blob/70e75f6/main.ts#L445">main.ts:445</a></li>
+								<li>Defined in <a href="https://github.com/blutorange/js-kagura/blob/260576a/main.ts#L445">main.ts:445</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1408,7 +1408,7 @@ comparator(<span class="hljs-number">0</span>, <span class="hljs-number">0.6</sp
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/blutorange/js-kagura/blob/70e75f6/main.ts#L366">main.ts:366</a></li>
+								<li>Defined in <a href="https://github.com/blutorange/js-kagura/blob/260576a/main.ts#L366">main.ts:366</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1458,7 +1458,7 @@ data.sort(combine(byProp(<span class="hljs-string">"country"</span>), byProp(<sp
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/blutorange/js-kagura/blob/70e75f6/main.ts#L163">main.ts:163</a></li>
+								<li>Defined in <a href="https://github.com/blutorange/js-kagura/blob/260576a/main.ts#L163">main.ts:163</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1510,7 +1510,7 @@ data.sort(combine(byProp(<span class="hljs-string">"country"</span>), byProp(<sp
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/blutorange/js-kagura/blob/70e75f6/main.ts#L512">main.ts:512</a></li>
+								<li>Defined in <a href="https://github.com/blutorange/js-kagura/blob/260576a/main.ts#L512">main.ts:512</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1566,7 +1566,7 @@ notebooks.filter(equalTo(<span class="hljs-string">"OLED"</span>, byKey(<span cl
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/blutorange/js-kagura/blob/70e75f6/main.ts#L484">main.ts:484</a></li>
+								<li>Defined in <a href="https://github.com/blutorange/js-kagura/blob/260576a/main.ts#L484">main.ts:484</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1618,7 +1618,7 @@ sameScreen(cars[<span class="hljs-number">0</span>], cars[<span class="hljs-numb
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/blutorange/js-kagura/blob/70e75f6/main.ts#L201">main.ts:201</a></li>
+								<li>Defined in <a href="https://github.com/blutorange/js-kagura/blob/260576a/main.ts#L201">main.ts:201</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1662,7 +1662,7 @@ sameScreen(cars[<span class="hljs-number">0</span>], cars[<span class="hljs-numb
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/blutorange/js-kagura/blob/70e75f6/main.ts#L228">main.ts:228</a></li>
+								<li>Defined in <a href="https://github.com/blutorange/js-kagura/blob/260576a/main.ts#L228">main.ts:228</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1714,7 +1714,7 @@ people.sort(invert(byProp(<span class="hljs-string">"name"</span>))
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/blutorange/js-kagura/blob/70e75f6/main.ts#L181">main.ts:181</a></li>
+								<li>Defined in <a href="https://github.com/blutorange/js-kagura/blob/260576a/main.ts#L181">main.ts:181</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1758,7 +1758,7 @@ people.sort(invert(byProp(<span class="hljs-string">"name"</span>))
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/blutorange/js-kagura/blob/70e75f6/main.ts#L50">main.ts:50</a></li>
+								<li>Defined in <a href="https://github.com/blutorange/js-kagura/blob/260576a/main.ts#L50">main.ts:50</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1813,7 +1813,7 @@ sort([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<spa
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/blutorange/js-kagura/blob/70e75f6/main.ts#L98">main.ts:98</a></li>
+								<li>Defined in <a href="https://github.com/blutorange/js-kagura/blob/260576a/main.ts#L98">main.ts:98</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1875,7 +1875,7 @@ sort([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<spa
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/blutorange/js-kagura/blob/70e75f6/main.ts#L71">main.ts:71</a></li>
+								<li>Defined in <a href="https://github.com/blutorange/js-kagura/blob/260576a/main.ts#L71">main.ts:71</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1927,7 +1927,7 @@ sort([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<spa
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/blutorange/js-kagura/blob/70e75f6/main.ts#L122">main.ts:122</a></li>
+								<li>Defined in <a href="https://github.com/blutorange/js-kagura/blob/260576a/main.ts#L122">main.ts:122</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1987,7 +1987,7 @@ sort([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<spa
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/blutorange/js-kagura/blob/70e75f6/main.ts#L555">main.ts:555</a></li>
+								<li>Defined in <a href="https://github.com/blutorange/js-kagura/blob/260576a/main.ts#L555">main.ts:555</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
