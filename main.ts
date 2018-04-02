@@ -95,7 +95,7 @@ export function sortStable<T>(items: T[], comparator: Comparator<T> = natural): 
  * @param comparator Comparator to use for comparing the keys.
  * @see {@link sort}
  */
-export function sortBy<T, K>(items: T[], keyExtractor: KeyExtractor<T, K>, comparator: Comparator<T> = natural): void {
+export function sortBy<T, K>(items: T[], keyExtractor: KeyExtractor<T, K>, comparator: Comparator<K> = natural): void {
     const tmp: any[] = items;
     for (let i = 0, j = items.length; i < j; ++i) {
         tmp[i] = {
@@ -121,7 +121,7 @@ export function sortBy<T, K>(items: T[], keyExtractor: KeyExtractor<T, K>, compa
  */
 export function sortStableBy<T, K>(
         items: T[], keyExtractor: KeyExtractor<T, K>,
-        comparator: Comparator<T> = natural): void {
+        comparator: Comparator<K> = natural): void {
     const tmp: any[] = items;
     for (let i = 0, j = items.length; i < j; ++i) {
         tmp[i] = {

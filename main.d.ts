@@ -1,8 +1,8 @@
 import { Comparable, Comparator, Equator, KeyExtractor, Maybe, Predicate } from "andross";
 export declare function sort<T>(items: T[], comparator?: Comparator<T>): void;
 export declare function sortStable<T>(items: T[], comparator?: Comparator<T>): void;
-export declare function sortBy<T, K>(items: T[], keyExtractor: KeyExtractor<T, K>, comparator?: Comparator<T>): void;
-export declare function sortStableBy<T, K>(items: T[], keyExtractor: KeyExtractor<T, K>, comparator?: Comparator<T>): void;
+export declare function sortBy<T, K>(items: T[], keyExtractor: KeyExtractor<T, K>, comparator?: Comparator<K>): void;
+export declare function sortStableBy<T, K>(items: T[], keyExtractor: KeyExtractor<T, K>, comparator?: Comparator<K>): void;
 export declare function comparable<T extends Comparable<T>>(lhs: Maybe<T>, rhs: Maybe<T>): number;
 export declare function natural<T>(lhs: Maybe<T>, rhs: Maybe<T>): number;
 export declare function inverse<T>(lhs: Maybe<T>, rhs: Maybe<T>): number;
