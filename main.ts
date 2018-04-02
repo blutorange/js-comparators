@@ -7,6 +7,8 @@ import {
     Predicate,
 } from "andross";
 
+const UNDEF = {};
+
 function split(toSplit: string, by: string): string[] {
     const result: string[] = [];
     let buffer: string[] = [];
@@ -25,6 +27,116 @@ function split(toSplit: string, by: string): string[] {
     }
     result.push(buffer.join(""));
     return result;
+}
+
+/**
+ * A wrapper for the built-in sort function that respects the comparator even
+ * if any item is `undefined`.
+ *
+ * ```javascript
+ * // Comparator "natural" sorts undefind before any other value.
+ * // But the built-in function always puts undefined last.
+ * [1,2,undefined,3].sort(natural);
+ * // => [1,2,3,undefined]
+ *
+ * sort([1,2,undefined,3], natural)
+ * // => [undefined, 1, 2, 3]
+ * ```
+ *
+ * @typeparam T Type of the items to be sorted.
+ * @param items Array to sort.
+ * @param comparator Comparator to use for the comparison.
+ */
+export function sort<T>(items: T[], comparator: Comparator<T> = natural): void {
+    const tmp: any[] = items;
+    for (let i = 0, j = items.length; i < j; ++i) {
+        tmp[i] = tmp[i] !== undefined ? tmp[i] : UNDEF;
+    }
+    tmp.sort((lhs, rhs) => {
+        return comparator(lhs !== UNDEF ? lhs : undefined, rhs !== UNDEF ? rhs : undefined);
+    });
+    for (let i = 0, j = tmp.length; i < j; ++i) {
+        tmp[i] = tmp[i] !== UNDEF ? tmp[i] : undefined;
+    }
+}
+
+/**
+ * Similar to {@link sort}, but additionally ensures that the sort is stable, ie.
+ * that items that are equal retain their relative position in the array.
+ * @typeparam T Type of the items to be sorted.
+ * @param items Array to sort.
+ * @param comparator Comparator to use for the comparison.
+ * @see {@link sort}
+ */
+export function sortStable<T>(items: T[], comparator: Comparator<T> = natural): void {
+    const tmp: any[] = items;
+    for (let i = 0, j = items.length; i < j; ++i) {
+        tmp[i] = {
+            i,
+            v: tmp[i],
+        };
+    }
+    tmp.sort((lhs, rhs) => {
+        const result = comparator(lhs.v, rhs.v);
+        return result !== 0 ? result : lhs.i - rhs.i;
+    });
+    for (let i = 0, j = tmp.length; i < j; ++i) {
+        tmp[i] = tmp[i].v;
+    }
+}
+
+/**
+ * Similar to {@link sort}, but allows specifying a custom key extractor. This also
+ * caches the key and should be used when extracting the key is computationally
+ * expensive.
+ * @typeparam T Type of the items to be sorted.
+ * @param items Array to sort.
+ * @param keyExtractor Extracts the key to be used for comparing the items.
+ * @param comparator Comparator to use for comparing the keys.
+ * @see {@link sort}
+ */
+export function sortBy<T, K>(items: T[], keyExtractor: KeyExtractor<T, K>, comparator: Comparator<T> = natural): void {
+    const tmp: any[] = items;
+    for (let i = 0, j = items.length; i < j; ++i) {
+        tmp[i] = {
+            k: keyExtractor(tmp[i]),
+            v: tmp[i],
+        };
+    }
+    tmp.sort((lhs, rhs) => {
+        return comparator(lhs.k, rhs.k);
+    });
+    for (let i = 0, j = tmp.length; i < j; ++i) {
+        tmp[i] = tmp[i].v;
+    }
+}
+
+/**
+ * Similar to {@link sortBy}, but allows specifying a custom key extractor.
+ * @typeparam T Type of the items to be sorted.
+ * @param items Array to sort.
+ * @param keyExtractor Extracts the key to be used for comparing the items.
+ * @param comparator Comparator to use for comparing the keys.
+ * @see {@link sort}
+ */
+export function sortStableBy<T, K>(
+        items: T[], keyExtractor: KeyExtractor<T, K>,
+        comparator: Comparator<T> = natural): void {
+    const tmp: any[] = items;
+    for (let i = 0, j = items.length; i < j; ++i) {
+        tmp[i] = {
+            i,
+            k: keyExtractor(tmp[i]),
+            v: tmp[i],
+        };
+    }
+    tmp.sort((lhs, rhs) => {
+        const result = comparator(lhs.k, rhs.k);
+        return result !== 0 ? result : lhs.i - rhs.i;
+    });
+    for (let i = 0, j = tmp.length; i < j; ++i) {
+        tmp[i] = tmp[i].v;
+    }
 }
 
 /**
@@ -113,7 +225,7 @@ export function inverse<T>(lhs: Maybe<T>, rhs: Maybe<T>): number {
  * @param {Comparator} comparator - Comparator to invert.
  * @return {Comparator} - Inverted comparator.
  */
-export function invert<T>(comparator: Comparator<Maybe<T>>): Comparator<Maybe<T>> {
+export function invert<T>(comparator: Comparator<T>): Comparator<T> {
     return (lhs, rhs) => {
         if (lhs === undefined || rhs === undefined) {
             return comparator(lhs, rhs);
@@ -175,8 +287,8 @@ export function invert<T>(comparator: Comparator<Maybe<T>>): Comparator<Maybe<T>
  * @return The comparator comparing by key.
  */
 export function byKey<T, K>(
-        keyExtractor: KeyExtractor<T, Maybe<K>>,
-        keyComparator: Comparator<Maybe<K>> = natural,
+        keyExtractor: KeyExtractor<T, K>,
+        keyComparator: Comparator<K> = natural,
 ): Comparator<Maybe<T>> {
     return (lhs: Maybe<T>, rhs: Maybe<T>) => {
         if (lhs === undefined) {
@@ -218,7 +330,7 @@ export function byKey<T, K>(
  * @param keySpecifier - How to access access the property to compare by, eg "name", "parent.id".
  * @param comparator - How to compare the fields. Defaults to natural order.
  */
-export function byProp<T>(keySpecifier: string, comparator?: Comparator<Maybe<any>>): Comparator<Maybe<T>> {
+export function byProp<T>(keySpecifier: string, comparator?: Comparator<any>): Comparator<Maybe<T>> {
     if (keySpecifier.indexOf(".") < 0) {
         return byKey(x => (x as any)[keySpecifier], comparator);
     }
@@ -251,8 +363,8 @@ export function byProp<T>(keySpecifier: string, comparator?: Comparator<Maybe<an
  * @param comparators - List of comparators to compare by.
  * @return The combined comparator.
  */
-export function combine<T>(...comparators: Comparator<Maybe<T>>[]): Comparator<Maybe<T>> {
-    return (lhs: Maybe<T>, rhs: Maybe<T>) => {
+export function combine<T>(...comparators: Comparator<T>[]): Comparator<T> {
+    return (lhs: T, rhs: T) => {
         for (let i = 0, j = comparators.length; i < j; ++i) {
             const result = comparators[i](lhs, rhs);
             if (result !== 0) {
@@ -369,8 +481,8 @@ export function byThreshold(threshold: number = 1E-12): Comparator<Maybe<number>
  * @param comparator Comparator for checking equality between two items.
  * @return An equator returning true for two items iff the given comparator considers them equal.
  */
-export function equals<T>(comparator: Comparator<Maybe<T>> = natural): Equator<Maybe<T>> {
-    return (lhs: Maybe<T>, rhs: Maybe<T>) => comparator(lhs, rhs) === 0;
+export function equals<T>(comparator: Comparator<T> = natural): Equator<T> {
+    return (lhs: T, rhs: T) => comparator(lhs, rhs) === 0;
 }
 
 /**
@@ -397,8 +509,8 @@ export function equals<T>(comparator: Comparator<Maybe<T>> = natural): Equator<M
  * @param comparator Comparator for checking equality between two items.
  * @return A predicate that returns true iff it is passed a value equal to the given item.
  */
-export function equalTo<T>(item: Maybe<T>, test: Comparator<Maybe<T>> = natural): Predicate<Maybe<T>> {
-    return (x: Maybe<T>) => test(item, x) === 0;
+export function equalTo<T>(item: T, test: Comparator<T> = natural): Predicate<T> {
+    return (x: T) => test(item, x) === 0;
 }
 
 /**
@@ -434,9 +546,9 @@ export function equalTo<T>(item: Maybe<T>, test: Comparator<Maybe<T>> = natural)
  * ```
  *
  * @typeparam T Type of the objects to compare.
- * @param comparator Comparator for comparing items.
  * @param lower Lower bound.
  * @param upper Upper bound.
+ * @param comparator Comparator for comparing items. Defaults to the natural comparator.
  * @param mode Whether to include the left and right hand side. Must be one of [] () [) (].
  * Defaults to []. Also allows the notation ][ for (), [[ for [), and ]] for (].
  */
@@ -444,9 +556,9 @@ export function within<T>(lower: T, upper: T, {
         comparator = natural,
         mode = "[]",
     }: {
-        comparator?: Comparator<Maybe<T>>,
+        comparator?: Comparator<T>,
         mode?: "[]" | "()" | "[)" | "(]" | "[[" | "]]" | "][",
-    } = {}): Predicate<Maybe<T>> {
+    } = {}): Predicate<T> {
     switch (mode) {
         case "[]":
             return item => comparator(lower, item) <= 0 && comparator(item, upper) <= 0;

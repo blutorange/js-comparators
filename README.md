@@ -86,6 +86,8 @@ Compare objects by using the comparison operator > and <.
 
 # Handling undefined
 
+## Sort order of undefined
+
 `undefined` always compares as less than any other value. This is different than how
 Array#sort handles `undefined`, but in line with the idea that an undefined `string` represents a blank string, which sorts before other strings alphabetically. This
 behaviour is also useful when working with comparisons on multiple properties.
@@ -139,6 +141,23 @@ for (let user = users[start]; user.given === `laura`; user= users[++start]) {
 This approach also works well with binary search trees, that always keep
 their elements sorted.
 
+## Sorting arrays
+
+The built-in array sort method always sorts `undefined` last, irrespective of the given comparator. Use one of the wrapper methods
+to sort `undefined` properly:
+
+```javascript
+const { sort } = require("kagura);
+
+// Comparator "natural" sorts undefind before any other value.
+// But the built-in function always puts undefined last.
+[1,2,undefined,3].sort(natural);
+// => [1,2,3,undefined]
+
+sort([1,2,undefined,3], natural)
+// => [undefined, 1, 2, 3]
+```
+
 # Build
 
 Probably not going to work on Windows.
@@ -151,6 +170,11 @@ npm run build
 ```
 
 # Change log
+
+## 1.2.0
+
+- Added sort wrappers, [see above](#sorting-arrays).
+- Fixed some typings regarding `undefined`. Some methods can handle undefined by setting the type parameter `T` to `Maybe<T>` on the calling side.
 
 ## 1.1.0
 

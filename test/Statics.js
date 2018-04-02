@@ -112,6 +112,46 @@ describe("ignoreCase", () => {
     })
 })
 
+describe("sort", () => {
+    it("should sort undefined according to the given comparator", () => {
+        const x = [undefined, 1, -1, undefined, -2, 2, undefined];
+        _.sort(x);
+        expect(x).to.deep.equal([undefined, undefined, undefined, -2, -1, 1, 2]);
+    });
+});
+
+describe("sortStable", () => {
+    it("should sort undefined according to the given comparator", () => {
+        const x = [undefined, 1, -1, undefined, -2, 2, undefined];
+        _.sortStable(x);
+        expect(x).to.deep.equal([undefined, undefined, undefined, -2, -1, 1, 2]);
+    });
+});
+
+describe("sortBy", () => {
+    it("should sort undefined according to the given comparator", () => {
+        const x = [{x: undefined}, {x: 1}, {x: -1}, {x: undefined}, {x: -2}, {x: 2}, {x: undefined}];
+        _.sortBy(x, a => a.x);
+        expect(x).to.deep.equal([{x: undefined}, {x: undefined}, {x: undefined}, {x: -2}, {x: -1}, {x: 1}, {x: 2}]);
+
+        const y = [{x: undefined}, {x: 1}, {x: -1}, {x: undefined}, {x: -2}, {x: 2}, {x: undefined}];
+        _.sortBy(y, a => a.x, _.inverse);
+        expect(y).to.deep.equal([{x: undefined}, {x: undefined}, {x: undefined}, {x: 2}, {x: 1}, {x: -1}, {x: -2}]);
+    });
+});
+
+describe("sortStableBy", () => {
+    it("should sort undefined according to the given comparator", () => {
+        const x = [{x: undefined}, {x: 1}, {x: -1}, {x: undefined}, {x: -2}, {x: 2}, {x: undefined}];
+        _.sortStableBy(x, a => a.x);
+        expect(x).to.deep.equal([{x: undefined}, {x: undefined}, {x: undefined}, {x: -2}, {x: -1}, {x: 1}, {x: 2}]);
+
+        const y = [{x: undefined}, {x: 1}, {x: -1}, {x: undefined}, {x: -2}, {x: 2}, {x: undefined}];
+        _.sortStableBy(y, a => a.x, _.inverse);
+        expect(y).to.deep.equal([{x: undefined}, {x: undefined}, {x: undefined}, {x: 2}, {x: 1}, {x: -1}, {x: -2}]);
+    });
+});
+
 describe("inverse", () => {
     it("should handle undefined", () => {
         checkUndefined(_.inverse, 0);

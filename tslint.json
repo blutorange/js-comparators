@@ -16,7 +16,10 @@
         "interface-name": {
             "options": "never-prefix"
         },
-        "one-line": false
+        "one-line": false,
+        "no-unused-variable": true,
+        "no-unsafe-finally": true,
+        "prefer-const": true
     },
     "rulesDirectory": []
 }

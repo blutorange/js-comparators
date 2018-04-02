@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const UNDEF = {};
 function split(toSplit, by) {
     const result = [];
     let buffer = [];
@@ -19,6 +20,70 @@ function split(toSplit, by) {
     result.push(buffer.join(""));
     return result;
 }
+function sort(items, comparator = natural) {
+    const tmp = items;
+    for (let i = 0, j = items.length; i < j; ++i) {
+        tmp[i] = tmp[i] !== undefined ? tmp[i] : UNDEF;
+    }
+    tmp.sort((lhs, rhs) => {
+        return comparator(lhs !== UNDEF ? lhs : undefined, rhs !== UNDEF ? rhs : undefined);
+    });
+    for (let i = 0, j = tmp.length; i < j; ++i) {
+        tmp[i] = tmp[i] !== UNDEF ? tmp[i] : undefined;
+    }
+}
+exports.sort = sort;
+function sortStable(items, comparator = natural) {
+    const tmp = items;
+    for (let i = 0, j = items.length; i < j; ++i) {
+        tmp[i] = {
+            i,
+            v: tmp[i],
+        };
+    }
+    tmp.sort((lhs, rhs) => {
+        const result = comparator(lhs.v, rhs.v);
+        return result !== 0 ? result : lhs.i - rhs.i;
+    });
+    for (let i = 0, j = tmp.length; i < j; ++i) {
+        tmp[i] = tmp[i].v;
+    }
+}
+exports.sortStable = sortStable;
+function sortBy(items, keyExtractor, comparator = natural) {
+    const tmp = items;
+    for (let i = 0, j = items.length; i < j; ++i) {
+        tmp[i] = {
+            k: keyExtractor(tmp[i]),
+            v: tmp[i],
+        };
+    }
+    tmp.sort((lhs, rhs) => {
+        return comparator(lhs.k, rhs.k);
+    });
+    for (let i = 0, j = tmp.length; i < j; ++i) {
+        tmp[i] = tmp[i].v;
+    }
+}
+exports.sortBy = sortBy;
+function sortStableBy(items, keyExtractor, comparator = natural) {
+    const tmp = items;
+    for (let i = 0, j = items.length; i < j; ++i) {
+        tmp[i] = {
+            i,
+            k: keyExtractor(tmp[i]),
+            v: tmp[i],
+        };
+    }
+    tmp.sort((lhs, rhs) => {
+        const result = comparator(lhs.k, rhs.k);
+        return result !== 0 ? result : lhs.i - rhs.i;
+    });
+    for (let i = 0, j = tmp.length; i < j; ++i) {
+        tmp[i] = tmp[i].v;
+    }
+}
+exports.sortStableBy = sortStableBy;
 function comparable(lhs, rhs) {
     if (lhs === undefined) {
         return rhs === undefined ? 0 : -1;
