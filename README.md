@@ -138,7 +138,7 @@ for (let user = users[start]; user.given === `laura`; user= users[++start]) {
 // => logs user4 and user3
 ```
 
-This approach also works well with binary search trees, that always keep
+This approach also works well with binary search trees that always keep
 their elements sorted.
 
 ## Sorting arrays
@@ -171,10 +171,16 @@ npm run build
 
 # Change log
 
+I use the following keywords:
+
+- `Added` A new feature that is backwards-compatible.
+- `Changed` A change that is not backwards-compatible.
+- `Fixed` A bug or error that was fixed.
+
 ## 1.2.0
 
 - Added sort wrappers, [see above](#sorting-arrays).
-- Fixed some typings regarding `undefined`. Some methods can handle undefined by setting the type parameter `T` to `Maybe<T>` on the calling side.
+- Fixed some typings regarding `undefined`. Some methods can handle undefined by setting the type parameter to `T|undefined` on the calling side.
 
 ## 1.1.0
 
