@@ -6,8 +6,6 @@ Utility methods for creating comparators, ie. `function (left,right)=>number`. S
 
 [Documentation for all methods with examples.](https://blutorange.github.io/js-kagura/)
 
-[Coverage report.](https://blutorange.github.io/js-kagura/coverage/)
-
 # Install
 
 The drill:
